@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mounts</title>
+    <style>
+        body {
+            background-color: #0F0F0F;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 5px -5px 0;
+}
+
+.square {
+    width: calc(20% - 10px);
+    box-sizing: border-box;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    position: relative;
+    overflow: hidden;
+}
+
+        .square img {
+            width: 100%;
+            height: auto;
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            box-sizing: border-box;
+            display: none;
+        }
+
+        .overlay-text {
+            color: white;
+            font-size: 16px;
+        }
+
+        .additional-text {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .square:hover .overlay {
+            display: flex;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background-color: #262626;
+            border-radius: 0;
+            margin-bottom: 10px;
+            height: 60px;
+            line-height: 30px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-buttons {
+            display: flex;
+            justify-content: center;
+        }
+
+        .header-buttons a {
+            padding: 0 20px;
+            color: white;
+            text-decoration: none;
+            border-radius: 0;
+            transition: transform 0.3s ease;
+            line-height: inherit;
+        }
+
+        .header-buttons a:hover {
+            transform: scale(1.3);
+        }
+
+        .filter-container { 
+    display: flex; 
+    justify-content: center; 
+    margin-bottom: 25px; /* Increase margin-bottom for more spacing */
+    margin-top: 30px;
+}
+
+.filter-box {
+    background-color: #262626;
+    padding: 10px;
+    border-radius: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%; /* Set width to 50% of the screen */
+    justify-content: left;
+}
+
+.filter-box label {
+    margin-bottom: 10px; /* Add some bottom margin for spacing */
+    width: calc(25% - 10px); /* Adjust width for 4 items per row */
+}
+
+        .filter-box input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="header-buttons">
+                <a href="home.html">Home</a>
+                <a href="mounts.html">Mounts</a>
+                <a href="pets.html">Pets</a>
+                <a href="toys.html">Toys</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="filter-container">
+        <div class="filter-box">
+            <input type="text" class="search-bar" placeholder="Search for mounts...">
+            <label><input type="checkbox" class="filter" data-tag="achievement" checked>Achievement</label>
+            <label><input type="checkbox" class="filter" data-tag="df" checked>Dragonflight</label>
+            <label><input type="checkbox" class="filter" data-tag="sl" checked>Shadowlands</label>
+            <label><input type="checkbox" class="filter" data-tag="bfa" checked>Battle for Azeroth</label>
+            <label><input type="checkbox" class="filter" data-tag="legion" checked>Legion</label>
+            <label><input type="checkbox" class="filter" data-tag="wod" checked>Warlords of Draenor</label>
+            <label><input type="checkbox" class="filter" data-tag="mop" checked>Mists of Pandaria</label>
+            <label><input type="checkbox" class="filter" data-tag="cata" checked>Cataclysm</label>
+            <label><input type="checkbox" class="filter" data-tag="wotlk" checked>Wrath of the Lich King</label>
+            <label><input type="checkbox" class="filter" data-tag="tbc" checked>The Burning Crusade</label>
+            <label><input type="checkbox" class="filter" data-tag="vanilla" checked>Vanilla</label>
+            <label><input type="checkbox" class="filter" data-tag="profession" checked>Profession</label>
+            <label><input type="checkbox" class="filter" data-tag="pvp" checked>Player vs. Player</label>
+            <label><input type="checkbox" class="filter" data-tag="world-event" checked>World Events</label>
+            <label><input type="checkbox" class="filter" data-tag="trading-post" checked>Trading Post</label>
+            <label><input type="checkbox" class="filter" data-tag="class-specific" checked>Class Specific</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <a href="https://www.wowhead.com/spell=48778/acherus-deathcharger" class="square class-specific">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25280.jpg" alt="Acherus Deathcharger">
+            <div class="additional-text">Acherus Deathcharger</div>
+            <div class="overlay">
+                <div class="overlay-text">Rewarded to Death Knights when completing the introduction quest [Into the Realm of Shadows]</div>
+            </div>
+        </a>
+
+        <a href="https://www.wowhead.com/item=44178/reins-of-the-albino-drake" class="square achievement">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25836.jpg" alt="Albino Drake">
+            <div class="additional-text">Albino Drake</div>
+            <div class="overlay">
+                <div class="overlay-text">Rewarded for completing the achievement [Leading the Cavalry].</div>
+            </div>
+        </a>
+
+        <a href="https://www.wowhead.com/item=44225/reins-of-the-armored-brown-bear" class="square wotlk">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27820.jpg" alt="Armored Brown Bear">
+            <div class="additional-text">Armored Brown Bear</div>
+            <div class="overlay">
+                <div class="overlay-text">Sold by Mei Francis is Dalaran for 750 gold.</div>
+            </div>
+        </a>
+
+        <a href="https://www.wowhead.com/item=184062/gnawed-reins-of-the-battle-bound-warhound" class="square sl">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-98224.jpg" alt="Battle-Bound Warhound">
+            <div class="additional-text">Battle-Bound Warhound</div>
+            <div class="overlay">
+                <div class="overlay-text">Has a small chance to drop on your first kill of the day for each of the four elites in the Theater of Pain outdoors arena in Maldraxxus.</div>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=29465/black-battlestrider" class="square pvp">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14372.jpg" alt="Black Battlestrider">
+            <div class="additional-text">Black Battlestrider</div>
+            <div class="overlay">
+                <div class="overlay-text">Sold by Lieutenant Karter in Stormwind City for 15 Mark of Honor</div>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=87795/reins-of-the-black-dragon-turtle" class="square pvp">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43717.jpg" alt="Black Dragon Turtle">
+            <div class="additional-text">Black Dragon Turtle</div>
+            <div class="overlay">
+                <div class="overlay-text">Requires you to be Exalted with Huojin Pandaren / Tushui Pandaren or to play as a Pandaren to purchase this mount.</div>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=29221/black-hawkstrider" class="square pvp">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19478.jpg" alt="Black Hawkstrider">
+            <div class="additional-text">Black Hawkstrider</div>
+            <div class="overlay">
+                <div class="overlay-text">Requires you to be Exalted with Silvermoon City or to play as a Blood Elf to purchase this mount.</div>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=46308/black-skeletal-horse" class="square vanilla">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-29130.jpg" alt="Black Skeletal Horse">
+            <div class="additional-text">Black Skeletal Horse</div>
+            <div class="overlay">
+                <div class="overlay-text">Requires you to be Exalted with Undercity or to play as an Undead to purchase this mount.</div>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=2411/black-stallion-bridle" class="square vanilla">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-2402.jpg" alt="Black Stallion">
+            <div class="additional-text">Black Stallion</div>
+            <div class="overlay">
+                <div class="overlay-text">Requires you to be Exalted with Stormwind or to play as a Human to purchase this mount.</div>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=44223/reins-of-the-black-war-bear" class="square pvp">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27818.jpg" alt="Black War Bear">
+            <div class="additional-text">Black War Bear</div>
+            <div class="overlay">
+                <div class="overlay-text">Rewarded for completing the achievement [For The Alliance!] or [For The Horde!]</div>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=35906/reins-of-the-black-war-elekk" class="square pvp">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-23928.jpg" alt="Black War Elekk">
+            <div class="additional-text">Black War Elekk</div>
+            <div class="overlay">
+                <div class="overlay-text">Sold by Lieutenant Karter in Stormwind City for 15 Mark of Honor</div>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=29466/black-war-kodo" class="square pvp">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14348.jpg" alt="Black War Kodo">
+            <div class="additional-text">Black War Kodo</div>
+            <div class="overlay">
+                <div class="overlay-text">Sold by Raider Bork in Orgrimmar for 15 Mark of Honor</div>
+            </div>
+        </a>
+    </div>
+    <script>
+        const filterCheckboxes = document.querySelectorAll('.filter');
+        const searchBars = document.querySelectorAll('.search-bar');
+        const squares = document.querySelectorAll('.square');
+
+        function filterSquares() {
+            const searchText = searchBars[0].value.toLowerCase().trim();
+
+            squares.forEach(function(square) {
+                const altText = square.querySelector('img').alt.toLowerCase();
+                const additionalText = square.querySelector('.additional-text').textContent.toLowerCase();
+                const tags = square.className.split(' ');
+                const matchesSearch = altText.includes(searchText) || additionalText.includes(searchText);
+
+                // Check if the square matches the search text
+                if (matchesSearch) {
+                    square.style.display = 'block'; // Show the square
+                } else {
+                    square.style.display = 'none'; // Hide the square
+                    return; // Exit the function if the square doesn't match the search text
+                }
+
+                // Check if any of the selected tags are associated with the square
+                let tagMatch = false;
+                filterCheckboxes.forEach(function(checkbox) {
+                    if (checkbox.checked && tags.includes(checkbox.dataset.tag)) {
+                        tagMatch = true;
+                    }
+                });
+
+                 //Show or hide the square based on tag matching
+                if (!tagMatch) {
+                    square.style.display = 'none'; // Hide the square if no tag matches
+                }
+            });
+        }
+
+        // Event listeners for search input and tag checkboxes
+        searchBars.forEach(function(searchBar) {
+            searchBar.addEventListener('input', filterSquares);
+        });
+
+        filterCheckboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', filterSquares);
+        });
+
+        // Initial filtering on page load
+        filterSquares();
+    </script>
+</body>
+</html>
