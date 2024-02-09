@@ -14,22 +14,23 @@
             padding: 0;
         }
 
+        /* Your CSS styles here */
         .row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 5px -5px 0;
-}
+            display: flex;
+            flex-wrap: wrap;
+            margin: 5px -5px 0;
+        }
 
-.square {
-    width: calc(20% - 10px);
-    box-sizing: border-box;
-    margin-right: 5px;
-    margin-left: 5px;
-    margin-top: 5px;
-    margin-bottom: 0px;
-    position: relative;
-    overflow: hidden;
-}
+        .square {
+            width: calc(20% - 10px);
+            box-sizing: border-box;
+            margin-right: 5px;
+            margin-left: 5px;
+            margin-top: 5px;
+            margin-bottom: 0px;
+            position: relative;
+            overflow: hidden;
+        }
 
         .square img {
             width: 100%;
@@ -102,30 +103,31 @@
         }
 
         .filter-container { 
-    display: flex; 
-    justify-content: center; 
-    margin-bottom: 25px; /* Increase margin-bottom for more spacing */
-    margin-top: 30px;
-}
-
-.filter-box {
-    background-color: #262626;
-    padding: 10px;
-    border-radius: 0px;
-    display: flex;
-    flex-wrap: wrap;
-    width: 50%; /* Set width to 50% of the screen */
-    justify-content: left;
-}
-
-.filter-box label {
-    margin-bottom: 10px; /* Add some bottom margin for spacing */
-    width: calc(25% - 10px); /* Adjust width for 4 items per row */
-}
-
-        .filter-box input[type="checkbox"] {
-            margin-right: 5px;
+            display: flex; 
+            justify-content: center; 
+            margin-bottom: 25px; /* Increase margin-bottom for more spacing */
+            margin-top: 30px;
         }
+
+    /* Existing styles for .filter-box */
+    .filter-box {
+        background-color: #262626;
+        padding: 10px;
+        border-radius: 0px;
+        display: flex;
+        flex-wrap: wrap;
+        width: 50%; /* Set width to 50% of the screen */
+        justify-content: left;
+    }
+
+    .filter-box label {
+        margin-bottom: 10px; /* Add some bottom margin for spacing */
+        width: calc(25% - 10px); /* Adjust width for 4 items per row */
+    }
+
+    .filter-box input[type="checkbox"] {
+        margin-right: 5px;
+    }
 
         .search-bar {
             width: 100%;
@@ -133,6 +135,27 @@
             box-sizing: border-box;
             margin-bottom: 10px;
         }
+
+        .faction-filter-box {
+        background-color: #262626;
+        padding: 10px;
+        border-radius: 0px;
+        display: flex;
+        flex-wrap: wrap;
+        width: 30%; /* Set width to 50% of the screen */
+        justify-content: space-between; /* Spread out the buttons evenly */
+    }
+
+    .faction-filter-box label {
+        margin-bottom: 0px; /* Add some bottom margin for spacing */
+        width: calc(30%); /* Adjust width for 3 items per row */
+        text-align: center; /* Center-align the text */
+
+    }
+
+    .faction-filter-box input[type="checkbox"] {
+        margin-right: 5px;
+    }
     </style>
 </head>
 <body>
@@ -169,8 +192,15 @@
         </div>
     </div>
 
+    <div class="filter-container">
+        <div class="faction-filter-box">
+            <label><input type="checkbox" class="faction-filter" data-faction="alliance">Alliance</label>
+            <label><input type="checkbox" class="faction-filter" data-faction="horde">Horde</label>
+            <label><input type="checkbox" class="faction-filter" data-faction="both" checked>Both</label>
+        </div>
+    </div>
     <div class="row">
-        <a href="https://www.wowhead.com/spell=48778/acherus-deathcharger" class="square class-specific">
+        <a href="https://www.wowhead.com/item=48778/acherus-deathcharger" class="square class-specific" data-faction-tag="both">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25280.jpg" alt="Acherus Deathcharger">
             <div class="additional-text">Acherus Deathcharger</div>
             <div class="overlay">
@@ -178,7 +208,7 @@
             </div>
         </a>
 
-        <a href="https://www.wowhead.com/item=44178/reins-of-the-albino-drake" class="square achievement">
+        <a href="https://www.wowhead.com/item=44178/reins-of-the-albino-drake" class="square achievement" data-faction-tag="both">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25836.jpg" alt="Albino Drake">
             <div class="additional-text">Albino Drake</div>
             <div class="overlay">
@@ -186,7 +216,7 @@
             </div>
         </a>
 
-        <a href="https://www.wowhead.com/item=44225/reins-of-the-armored-brown-bear" class="square wotlk">
+        <a href="https://www.wowhead.com/item=44225/reins-of-the-armored-brown-bear" class="square wotlk" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27820.jpg" alt="Armored Brown Bear">
             <div class="additional-text">Armored Brown Bear</div>
             <div class="overlay">
@@ -194,105 +224,120 @@
             </div>
         </a>
 
-        <a href="https://www.wowhead.com/item=184062/gnawed-reins-of-the-battle-bound-warhound" class="square sl">
+        <a href="https://www.wowhead.com/item=44226/reins-of-the-armored-brown-bear" class="square wotlk" data-faction-tag="horde">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27821.jpg" alt="Armored Brown Bear">
+            <div class="additional-text">Armored Brown Bear</div>
+            <div class="overlay">
+                <div class="overlay-text">Sold by Mei Francis is Dalaran for 750 gold.</div>
+            </div>
+        </a>
+
+        <a href="https://www.wowhead.com/item=184062/gnawed-reins-of-the-battle-bound-warhound" class="square sl" data-faction-tag="both">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-98224.jpg" alt="Battle-Bound Warhound">
             <div class="additional-text">Battle-Bound Warhound</div>
             <div class="overlay">
                 <div class="overlay-text">Has a small chance to drop on your first kill of the day for each of the four elites in the Theater of Pain outdoors arena in Maldraxxus.</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29465/black-battlestrider" class="square pvp">
+        <a href="https://www.wowhead.com/item=29465/black-battlestrider" class="square pvp" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14372.jpg" alt="Black Battlestrider">
             <div class="additional-text">Black Battlestrider</div>
             <div class="overlay">
                 <div class="overlay-text">Sold by Lieutenant Karter in Stormwind City for 15 Mark of Honor.</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=87795/reins-of-the-black-dragon-turtle" class="square pvp">
+        <a href="https://www.wowhead.com/item=87795/reins-of-the-black-dragon-turtle" class="square pvp" data-faction-tag="both">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43717.jpg" alt="Black Dragon Turtle">
             <div class="additional-text">Black Dragon Turtle</div>
             <div class="overlay">
                 <div class="overlay-text">Requires you to be Exalted with Huojin Pandaren / Tushui Pandaren or to play as a Pandaren to purchase this mount.</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29221/black-hawkstrider" class="square pvp">
+        <a href="https://www.wowhead.com/item=29221/black-hawkstrider" class="square pvp" data-faction-tag="horde">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19478.jpg" alt="Black Hawkstrider">
             <div class="additional-text">Black Hawkstrider</div>
             <div class="overlay">
                 <div class="overlay-text">Requires you to be Exalted with Silvermoon City or to play as a Blood Elf to purchase this mount.</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=46308/black-skeletal-horse" class="square vanilla">
+        <a href="https://www.wowhead.com/item=46308/black-skeletal-horse" class="square vanilla" data-faction-tag="horde">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-29130.jpg" alt="Black Skeletal Horse">
             <div class="additional-text">Black Skeletal Horse</div>
             <div class="overlay">
                 <div class="overlay-text">Requires you to be Exalted with Undercity or to play as an Undead to purchase this mount.</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=2411/black-stallion-bridle" class="square vanilla">
+        <a href="https://www.wowhead.com/item=2411/black-stallion-bridle" class="square vanilla" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-2402.jpg" alt="Black Stallion">
             <div class="additional-text">Black Stallion</div>
             <div class="overlay">
                 <div class="overlay-text">Requires you to be Exalted with Stormwind or to play as a Human to purchase this mount.</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=44223/reins-of-the-black-war-bear" class="square pvp">
+        <a href="https://www.wowhead.com/item=44223/reins-of-the-black-war-bear" class="square pvp" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27818.jpg" alt="Black War Bear">
             <div class="additional-text">Black War Bear</div>
             <div class="overlay">
                 <div class="overlay-text">Rewarded for completing the achievement [For The Alliance!] or [For The Horde!].</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=35906/reins-of-the-black-war-elekk" class="square pvp">
+        <a href="https://www.wowhead.com/item=35906/reins-of-the-black-war-elekk" class="square pvp" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-23928.jpg" alt="Black War Elekk">
             <div class="additional-text">Black War Elekk</div>
             <div class="overlay">
                 <div class="overlay-text">Sold by Lieutenant Karter in Stormwind City for 15 Mark of Honor.</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29466/black-war-kodo" class="square pvp">
+        <a href="https://www.wowhead.com/item=29466/black-war-kodo" class="square pvp" data-faction-tag="horde">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14348.jpg" alt="Black War Kodo">
             <div class="additional-text">Black War Kodo</div>
             <div class="overlay">
                 <div class="overlay-text">Sold by Raider Bork in Orgrimmar for 15 Mark of Honor.</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=44077/reins-of-the-black-war-mammoth" class="square pvp">
+        <a href="https://www.wowhead.com/item=44077/reins-of-the-black-war-mammoth" class="square pvp" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27247.jpg" alt="Black War Mammoth">
             <div class="additional-text">Black War Mammoth</div>
             <div class="overlay">
-                <div class="overlay-text">Sold by the Wintergrasp Quartermaster in Wintergrasp for 15 Mark of Honor when your faction has control over the zone.</div>
+                <div class="overlay-text">Sold by Knight Dameron in Wintergrasp for 15 Mark of Honor when the Alliance has control over the zone.</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29467/black-war-ram" class="square pvp">
+        <a href="https://www.wowhead.com/item=44077/reins-of-the-black-war-mammoth" class="square pvp" data-faction-tag="horde">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27245.jpg" alt="Black War Mammoth">
+            <div class="additional-text">Black War Mammoth</div>
+            <div class="overlay">
+                <div class="overlay-text">Sold by Stone Guard Mukar in Wintergrasp for 15 Mark of Honor when the Horde has control over the zone.</div>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=29467/black-war-ram" class="square pvp" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14577.jpg" alt="Black War Ram">
             <div class="additional-text">Black War Ram</div>
             <div class="overlay">
                 <div class="overlay-text">Sold by Lieutenant Karter in Stormwind City for 15 Mark of Honor.</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29472/whistle-of-the-black-war-raptor" class="square pvp">
+        <a href="https://www.wowhead.com/item=29472/whistle-of-the-black-war-raptor" class="square pvp" data-faction-tag="horde">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14388.jpg" alt="Black War Raptor">
             <div class="additional-text">Black War Rapto</div>
             <div class="overlay">
                 <div class="overlay-text">Sold by Raider Bork in Orgrimmar for 15 Mark of Honor.</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29468/black-war-steed-bridle" class="square pvp">
+        <a href="https://www.wowhead.com/item=29468/black-war-steed-bridle" class="square pvp" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14337.jpg" alt="Black War Steed">
             <div class="additional-text">Black War Steed</div>
             <div class="overlay">
                 <div class="overlay-text">Sold by Lieutenant Karter in Stormwind City for 15 Mark of Honor.</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29471/reins-of-the-black-war-tiger" class="square pvp">
+        <a href="https://www.wowhead.com/item=29471/reins-of-the-black-war-tiger" class="square pvp" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14330.jpg" alt="Black War Tiger">
             <div class="additional-text">Black War Tiger</div>
             <div class="overlay">
                 <div class="overlay-text">Sold by Lieutenant Karter in Stormwind City for 15 Mark of Honor.</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29469/horn-of-the-black-war-wolf" class="square pvp">
+        <a href="https://www.wowhead.com/item=29469/horn-of-the-black-war-wolf" class="square pvp" data-faction-tag="horde">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14334.jpg" alt="Black War Wolf">
             <div class="additional-text">Black War Wolf</div>
             <div class="overlay">
@@ -300,14 +345,14 @@
             </div>
         </a>
 
-        <a href="https://www.wowhead.com/item=29467/black-war-ram" class="square vanilla">
+        <a href="https://www.wowhead.com/item=29467/black-war-ram" class="square vanilla" data-faction-tag="horde">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-207.jpg" alt="Black Wolf">
             <div class="additional-text">Black Wolf</div>
             <div class="overlay">
                 <div class="overlay-text">Requires you to be Exalted with Orgrimmar or to play as an Orc to purchase this mount.</div>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29467/black-war-ram" class="square bfa">
+        <a href="https://www.wowhead.com/item=29467/black-war-ram" class="square bfa" data-faction-tag="both">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-55151.jpg" alt="Bloodgorged Hunter">
             <div class="additional-text">Bloodgorged Hunter</div>
             <div class="overlay">
@@ -316,53 +361,86 @@
         </a>
     </div>
     <script>
-        const filterCheckboxes = document.querySelectorAll('.filter');
-        const searchBars = document.querySelectorAll('.search-bar');
-        const squares = document.querySelectorAll('.square');
-
-        function filterSquares() {
-            const searchText = searchBars[0].value.toLowerCase().trim();
-
-            squares.forEach(function(square) {
-                const altText = square.querySelector('img').alt.toLowerCase();
-                const additionalText = square.querySelector('.additional-text').textContent.toLowerCase();
-                const tags = square.className.split(' ');
-                const matchesSearch = altText.includes(searchText) || additionalText.includes(searchText);
-
-                // Check if the square matches the search text
-                if (matchesSearch) {
-                    square.style.display = 'block'; // Show the square
-                } else {
-                    square.style.display = 'none'; // Hide the square
-                    return; // Exit the function if the square doesn't match the search text
-                }
-
-                // Check if any of the selected tags are associated with the square
-                let tagMatch = false;
-                filterCheckboxes.forEach(function(checkbox) {
-                    if (checkbox.checked && tags.includes(checkbox.dataset.tag)) {
-                        tagMatch = true;
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterCheckboxes = document.querySelectorAll('.filter');
+            const searchBars = document.querySelectorAll('.search-bar');
+            const squares = document.querySelectorAll('.square');
+            const factionCheckboxes = document.querySelectorAll('.faction-filter');
+    
+            function filterSquares() {
+                const searchText = searchBars[0].value.toLowerCase().trim();
+                const selectedFaction = getSelectedFaction();
+    
+                squares.forEach(function(square) {
+                    const altText = square.querySelector('img').alt.toLowerCase();
+                    const additionalText = square.querySelector('.additional-text').textContent.toLowerCase();
+                    const tags = square.className.split(' ');
+                    const matchesSearch = altText.includes(searchText) || additionalText.includes(searchText);
+                    const factionTag = square.dataset.factionTag;
+    
+                    // Check if the square matches the search text
+                    if (matchesSearch) {
+                        square.style.display = 'block'; // Show the square
+                    } else {
+                        square.style.display = 'none'; // Hide the square
+                        return; // Exit the function if the square doesn't match the search text
+                    }
+    
+                    // Check if any of the selected tags are associated with the square
+                    let tagMatch = false;
+                    filterCheckboxes.forEach(function(checkbox) {
+                        if (checkbox.checked && tags.includes(checkbox.dataset.tag)) {
+                            tagMatch = true;
+                        }
+                    });
+    
+                    // Check if the square matches the selected faction
+                    const factionMatch = selectedFaction === 'both' || factionTag === selectedFaction;
+    
+                    // Show or hide the square based on tag and faction matching
+                    if (!tagMatch || !factionMatch) {
+                        square.style.display = 'none'; // Hide the square if no tag or faction matches
                     }
                 });
-
-                 //Show or hide the square based on tag matching
-                if (!tagMatch) {
-                    square.style.display = 'none'; // Hide the square if no tag matches
-                }
+            }
+    
+            function getSelectedFaction() {
+                const selectedFactionCheckbox = document.querySelector('.faction-filter:checked');
+                return selectedFactionCheckbox ? selectedFactionCheckbox.dataset.faction : 'both';
+            }
+    
+            function handleFactionCheckboxChange(checkbox) {
+                if (!checkbox.checked) return; // If the checkbox is being unchecked, do nothing
+    
+                // Uncheck other checkboxes
+                factionCheckboxes.forEach(function(otherCheckbox) {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                    }
+                });
+    
+                filterSquares(); // Update the filtering based on the new selection
+            }
+    
+            // Add event listeners to the faction checkboxes
+            factionCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    handleFactionCheckboxChange(checkbox);
+                });
             });
-        }
-
-        // Event listeners for search input and tag checkboxes
-        searchBars.forEach(function(searchBar) {
-            searchBar.addEventListener('input', filterSquares);
+    
+            // Event listeners for search input and tag checkboxes
+            searchBars.forEach(function(searchBar) {
+                searchBar.addEventListener('input', filterSquares);
+            });
+    
+            filterCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', filterSquares);
+            });
+    
+            // Initial filtering on page load
+            filterSquares();
         });
-
-        filterCheckboxes.forEach(function(checkbox) {
-            checkbox.addEventListener('change', filterSquares);
-        });
-
-        // Initial filtering on page load
-        filterSquares();
     </script>
 </body>
 </html>
