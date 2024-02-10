@@ -360,88 +360,91 @@
             </div>
         </a>
     </div>
-    <script>
-       document.addEventListener('DOMContentLoaded', function() {
-    const filterCheckboxes = document.querySelectorAll('.filter');
-    const searchBars = document.querySelectorAll('.search-bar');
-    const squares = document.querySelectorAll('.square');
-    const factionCheckboxes = document.querySelectorAll('.faction-filter');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterCheckboxes = document.querySelectorAll('.filter');
+        const searchBars = document.querySelectorAll('.search-bar');
+        const squares = document.querySelectorAll('.square');
+        const factionCheckboxes = document.querySelectorAll('.faction-filter');
 
-    function filterSquares() {
-        const searchText = searchBars[0].value.toLowerCase().trim();
-        const selectedFaction = getSelectedFaction();
+        function filterSquares() {
+            const searchText = searchBars[0].value.toLowerCase().trim();
+            const selectedFaction = getSelectedFaction();
 
-        squares.forEach(function(square) {
-            const altText = square.querySelector('img').alt.toLowerCase();
-            const additionalText = square.querySelector('.additional-text').textContent.toLowerCase();
-            const tags = square.className.split(' ');
-            const matchesSearch = altText.includes(searchText) || additionalText.includes(searchText);
-            const factionTag = square.dataset.factionTag;
+            squares.forEach(function(square) {
+                const altText = square.querySelector('img').alt.toLowerCase();
+                const additionalText = square.querySelector('.additional-text').textContent.toLowerCase();
+                const tags = square.className.split(' ');
+                const matchesSearch = altText.includes(searchText) || additionalText.includes(searchText);
+                const factionTag = square.dataset.factionTag;
 
-            if (matchesSearch) {
-                square.style.display = 'block';
-            } else {
-                square.style.display = 'none';
+                // Check if the square matches the search text
+                if (matchesSearch) {
+                    square.style.display = 'block'; // Show the square
+                } else {
+                    square.style.display = 'none'; // Hide the square
+                    return; // Exit the function if the square doesn't match the search text
+                }
+
+                // Check if any of the selected tags are associated with the square
+                let tagMatch = false;
+                filterCheckboxes.forEach(function(checkbox) {
+                    if (checkbox.checked && tags.includes(checkbox.dataset.tag)) {
+                        tagMatch = true;
+                    }
+                });
+
+                // Check if the square matches the selected faction
+                const factionMatch = selectedFaction === 'both' || factionTag === selectedFaction || (selectedFaction === 'alliance' && (factionTag === 'alliance' || factionTag === 'both')) || (selectedFaction === 'horde' && (factionTag === 'horde' || factionTag === 'both'));
+
+                // Show or hide the square based on tag and faction matching
+                if (!tagMatch || !factionMatch) {
+                    square.style.display = 'none'; // Hide the square if no tag or faction matches
+                }
+            });
+        }
+
+        function getSelectedFaction() {
+            const selectedFactionCheckbox = document.querySelector('.faction-filter:checked');
+            return selectedFactionCheckbox ? selectedFactionCheckbox.dataset.faction : 'both';
+        }
+
+        function handleFactionCheckboxChange(checkbox) {
+            if (!checkbox.checked) {
+                // Prevent unchecking the currently selected faction checkbox
+                checkbox.checked = true;
                 return;
             }
 
-            let tagMatch = false;
-            filterCheckboxes.forEach(function(checkbox) {
-                if (checkbox.checked && tags.includes(checkbox.dataset.tag)) {
-                    tagMatch = true;
+            // Uncheck other checkboxes
+            factionCheckboxes.forEach(function(otherCheckbox) {
+                if (otherCheckbox !== checkbox) {
+                    otherCheckbox.checked = false;
                 }
             });
 
-            const factionMatch = selectedFaction === 'both' || factionTag === selectedFaction;
-
-            if (!tagMatch || !factionMatch) {
-                square.style.display = 'none';
-            }
-        });
-    }
-
-    function getSelectedFaction() {
-        const selectedFactionCheckbox = document.querySelector('.faction-filter:checked');
-        return selectedFactionCheckbox ? selectedFactionCheckbox.dataset.faction : 'both';
-    }
-
-    function handleFactionCheckboxChange(checkbox) {
-        if (!checkbox.checked && document.querySelectorAll('.faction-filter:checked').length === 0) {
-            checkbox.checked = true; // Re-check the checkbox if it's the only one and being unchecked
-            return; // Exit the function to avoid unchecking the last checkbox
+            filterSquares(); // Update the filtering based on the new selection
         }
 
-        factionCheckboxes.forEach(function(otherCheckbox) {
-            if (otherCheckbox !== checkbox) {
-                otherCheckbox.checked = false;
-            }
+        // Add event listeners to the faction checkboxes
+        factionCheckboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                handleFactionCheckboxChange(checkbox);
+            });
         });
 
-        filterSquares(); // Update the filtering based on the new selection
-    }
-
-    // Initialize one faction filter as checked if none are checked by default
-    if (document.querySelectorAll('.faction-filter:checked').length === 0) {
-        factionCheckboxes[0].checked = true; // Default to the first faction filter as checked
-    }
-
-    factionCheckboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            handleFactionCheckboxChange(checkbox);
+        // Event listeners for search input and tag checkboxes
+        searchBars.forEach(function(searchBar) {
+            searchBar.addEventListener('input', filterSquares);
         });
+
+        filterCheckboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', filterSquares);
+        });
+
+        // Initial filtering on page load
+        filterSquares();
     });
-
-    searchBars.forEach(function(searchBar) {
-        searchBar.addEventListener('input', filterSquares);
-    });
-
-    filterCheckboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('change', filterSquares);
-    });
-
-    filterSquares();
-});
-
-    </script>
+</script>
 </body>
 </html>
