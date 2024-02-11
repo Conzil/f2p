@@ -13,7 +13,11 @@
             margin: 0;
             padding: 0;
         }
-
+.text {
+    text-align: center;
+    padding: 0px 0px;
+    margin: 0px 0px;
+}
         /* Your CSS styles here */
         .row {
             display: flex;
@@ -164,7 +168,7 @@
     .faction-filter-box input[type="checkbox"] {
         margin-right: 5px;
     }
-    .obtained-filter-box {
+    .third-filter-box {
         background-color: #262626;
         padding: 10px;
         border-radius: 0px;
@@ -172,16 +176,18 @@
         flex-wrap: wrap;
         width: 30%; /* Set width to 50% of the screen */
         justify-content: space-between; /* Spread out the buttons evenly */
+        margin: 0 10px; /* Decreased horizontal margin */
+
     }
 
-    .obtained-filter-box label {
+    .third-filter-box label {
         margin-bottom: 0px; /* Add some bottom margin for spacing */
         width: calc(30%); /* Adjust width for 3 items per row */
         text-align: center; /* Center-align the text */
 
     }
 
-    .obtained-filter-box input[type="checkbox"] {
+    .third-filter-box input[type="checkbox"] {
         margin-right: 5px;
     }
 
@@ -237,192 +243,202 @@
         </div>
     </div>
     <div class="filter-container">
-        <div class="obtained-filter-box">
-            <label><input type="checkbox" class="obtained-filter" data-faction="owned">Obtained</label>
-            <label><input type="checkbox" class="obtained-filter" data-faction="not owned">Not Obtained</label>
-            <label><input type="checkbox" class="obtained-filter" data-faction="all" checked>All</label>
+        <div class="third-filter-box">
+            <label><input type="checkbox" class="third-filter" data-faction="owned">Obtained</label>
+            <label><input type="checkbox" class="third-filter" data-faction="not owned">Not Obtained</label>
+            <label><input type="checkbox" class="third-filter" data-faction="all" checked>All</label>
         </div>
     </div>
+    <div class="text">
+    Obtained Filter is WIP, not working yet.</div>
 <div class="obtained-checkbox-container" onclick="toggleCheckbox(this)">
     <input type="checkbox" class="obtained-checkbox">
-    <span class="obtained-text">Mark as obtained</span>
+    <span class="obtained-text">Obtained</span>
 </div>
     <div class="row"> 
-        <a href="https://www.wowhead.com/spell=48778/acherus-deathcharger" class="square class-specific" data-faction-tag="both" data-mount-id="acherus_deathcharger">
+        <a href="https://www.wowhead.com/spell=48778/acherus-deathcharger" class="square class-specific" data-faction-tag="both" data-mount-id="48778" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25280.jpg" alt="Acherus Deathcharger">
             <div class="additional-text">Acherus Deathcharger</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=44178/reins-of-the-albino-drake" class="square achievement" data-faction-tag="both" data-mount-id="albino_drake">
+        <a href="https://www.wowhead.com/item=44178/reins-of-the-albino-drake" class="square achievement" data-faction-tag="both" data-mount-id="44178" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25836.jpg" alt="Albino Drake">
             <div class="additional-text">Albino Drake</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=44225/reins-of-the-armored-brown-bear" class="square wotlk" data-faction-tag="alliance">
+        <a href="https://www.wowhead.com/item=44225/reins-of-the-armored-brown-bear" class="square wotlk" data-faction-tag="alliance" data-mount-id="44225" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27820.jpg" alt="Armored Brown Bear">
             <div class="additional-text">Armored Brown Bear</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=44226/reins-of-the-armored-brown-bear" class="square wotlk" data-faction-tag="horde">
+        <a href="https://www.wowhead.com/item=44226/reins-of-the-armored-brown-bear" class="square wotlk" data-faction-tag="horde" data-mount-id="44226" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27821.jpg" alt="Armored Brown Bear">
             <div class="additional-text">Armored Brown Bear</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=184062/gnawed-reins-of-the-battle-bound-warhound" class="square sl" data-faction-tag="both">
+        <a href="https://www.wowhead.com/item=184062/gnawed-reins-of-the-battle-bound-warhound" class="square sl" data-faction-tag="both" data-mount-id="184062" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-98224.jpg" alt="Battle-Bound Warhound">
             <div class="additional-text">Battle-Bound Warhound</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29465/black-battlestrider" class="square pvp" data-faction-tag="alliance">
+        <a href="https://www.wowhead.com/item=29465/black-battlestrider" class="square pvp" data-faction-tag="alliance" data-mount-id="29465" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14372.jpg" alt="Black Battlestrider">
             <div class="additional-text">Black Battlestrider</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=87795/reins-of-the-black-dragon-turtle" class="square pvp" data-faction-tag="both">
+        <a href="https://www.wowhead.com/item=87795/reins-of-the-black-dragon-turtle" class="square pvp" data-faction-tag="both" data-mount-id="87795" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43717.jpg" alt="Black Dragon Turtle">
             <div class="additional-text">Black Dragon Turtle</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29221/black-hawkstrider" class="square pvp" data-faction-tag="horde">
+        <a href="https://www.wowhead.com/item=29221/black-hawkstrider" class="square pvp" data-faction-tag="horde" data-mount-id="29221" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19478.jpg" alt="Black Hawkstrider">
             <div class="additional-text">Black Hawkstrider</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=46308/black-skeletal-horse" class="square vanilla" data-faction-tag="horde">
+        <a href="https://www.wowhead.com/item=46308/black-skeletal-horse" class="square vanilla" data-faction-tag="horde" data-mount-id="46308" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-29130.jpg" alt="Black Skeletal Horse">
             <div class="additional-text">Black Skeletal Horse</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=2411/black-stallion-bridle" class="square vanilla" data-faction-tag="alliance">
+        <a href="https://www.wowhead.com/item=2411/black-stallion-bridle" class="square vanilla" data-faction-tag="alliance" data-mount-id="2411" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-2402.jpg" alt="Black Stallion">
             <div class="additional-text">Black Stallion</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=44223/reins-of-the-black-war-bear" class="square pvp" data-faction-tag="alliance">
+        <a href="https://www.wowhead.com/item=44223/reins-of-the-black-war-bear" class="square pvp" data-faction-tag="alliance" data-mount-id="44223" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27818.jpg" alt="Black War Bear">
             <div class="additional-text">Black War Bear</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=35906/reins-of-the-black-war-elekk" class="square pvp" data-faction-tag="alliance">
+        <a href="https://www.wowhead.com/item=44224/reins-of-the-black-war-bear" class="square pvp" data-faction-tag="horde" data-mount-id="44224" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27819.jpg" alt="Black War Bear">
+            <div class="additional-text">Black War Bear</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=35906/reins-of-the-black-war-elekk" class="square pvp" data-faction-tag="alliance" data-mount-id="35906" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-23928.jpg" alt="Black War Elekk">
             <div class="additional-text">Black War Elekk</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29466/black-war-kodo" class="square pvp" data-faction-tag="horde">
+        <a href="https://www.wowhead.com/item=29466/black-war-kodo" class="square pvp" data-faction-tag="horde" data-mount-id="29466" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14348.jpg" alt="Black War Kodo">
             <div class="additional-text">Black War Kodo</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=44077/reins-of-the-black-war-mammoth" class="square pvp" data-faction-tag="alliance">
+        <a href="https://www.wowhead.com/item=43956/reins-of-the-black-war-mammoth" class="square pvp" data-faction-tag="alliance" data-mount-id="43956" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27247.jpg" alt="Black War Mammoth">
             <div class="additional-text">Black War Mammoth</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=44077/reins-of-the-black-war-mammoth" class="square pvp" data-faction-tag="horde">
+        <a href="https://www.wowhead.com/item=44077/reins-of-the-black-war-mammoth" class="square pvp" data-faction-tag="horde" data-mount-id="44077" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27245.jpg" alt="Black War Mammoth">
             <div class="additional-text">Black War Mammoth</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29467/black-war-ram" class="square pvp" data-faction-tag="alliance">
+        <a href="https://www.wowhead.com/item=29467/black-war-ram" class="square pvp" data-faction-tag="alliance" data-mount-id="29467" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14577.jpg" alt="Black War Ram">
             <div class="additional-text">Black War Ram</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29472/whistle-of-the-black-war-raptor" class="square pvp" data-faction-tag="horde">
+        <a href="https://www.wowhead.com/item=29472/whistle-of-the-black-war-raptor" class="square pvp" data-faction-tag="horde" data-mount-id="29472" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14388.jpg" alt="Black War Raptor">
-            <div class="additional-text">Black War Rapto</div>
+            <div class="additional-text">Black War Raptor</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29468/black-war-steed-bridle" class="square pvp" data-faction-tag="alliance">
+        <a href="https://www.wowhead.com/item=29468/black-war-steed-bridle" class="square pvp" data-faction-tag="alliance" data-mount-id="29468" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14337.jpg" alt="Black War Steed">
             <div class="additional-text">Black War Steed</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29471/reins-of-the-black-war-tiger" class="square pvp" data-faction-tag="alliance">
+        <a href="https://www.wowhead.com/item=29471/reins-of-the-black-war-tiger" class="square pvp" data-faction-tag="alliance" data-mount-id="29471" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14330.jpg" alt="Black War Tiger">
             <div class="additional-text">Black War Tiger</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29469/horn-of-the-black-war-wolf" class="square pvp" data-faction-tag="horde">
+        <a href="https://www.wowhead.com/item=29469/horn-of-the-black-war-wolf" class="square pvp" data-faction-tag="horde" data-mount-id="29469" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14334.jpg" alt="Black War Wolf">
             <div class="additional-text">Black War Wolf</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
 
-        <a href="https://www.wowhead.com/item=29467/black-war-ram" class="square vanilla" data-faction-tag="horde">
+        <a href="https://www.wowhead.com/item=46099/horn-of-the-black-wolf" class="square vanilla" data-faction-tag="horde" data-mount-id="46099" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-207.jpg" alt="Black Wolf">
             <div class="additional-text">Black Wolf</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29467/black-war-ram" class="square bfa" data-faction-tag="both">
+        <a href="https://www.wowhead.com/item=166468/bloodgorged-hunter" class="square bfa" data-faction-tag="both" data-mount-id="166468" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-55151.jpg" alt="Bloodgorged Hunter">
             <div class="additional-text">Bloodgorged Hunter</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
-                <span class="obtained-text">Mark as obtained</span>
+                <span class="obtained-text">Obtained</span>
             </div>
         </a>
     </div>
@@ -440,20 +456,11 @@
         }
     
         document.addEventListener('DOMContentLoaded', function() {
-            // Retrieve obtained mounts from localStorage
-            const obtainedMounts = JSON.parse(localStorage.getItem('obtainedMounts')) || {};
-    
-            // Function to update the obtained status of a mount
-            function updateObtainedStatus(mountId, obtained) {
-                obtainedMounts[mountId] = obtained;
-                localStorage.setItem('obtainedMounts', JSON.stringify(obtainedMounts));
-            }
-    
             const filterCheckboxes = document.querySelectorAll('.filter');
             const searchBars = document.querySelectorAll('.search-bar');
             const squares = document.querySelectorAll('.square');
             const factionCheckboxes = document.querySelectorAll('.faction-filter');
-    
+                
             function filterSquares() {
                 const searchText = searchBars[0].value.toLowerCase().trim();
                 const selectedFaction = getSelectedFaction();
@@ -490,6 +497,12 @@
                     }
                 });
             }
+            // Function to get the selected third filter value
+function getSelectedThirdFilter() {
+    const selectedThirdFilterCheckbox = document.querySelector('.third-filter:checked');
+    return selectedThirdFilterCheckbox ? selectedThirdFilterCheckbox.value : 'all';
+}
+            
     
             function getSelectedFaction() {
                 const selectedFactionCheckbox = document.querySelector('.faction-filter:checked');
@@ -512,13 +525,58 @@
     
                 filterSquares(); // Update the filtering based on the new selection
             }
-    
-            // Add event listeners to the faction checkboxes
-            factionCheckboxes.forEach(function(checkbox) {
-                checkbox.addEventListener('change', function() {
-                    handleFactionCheckboxChange(checkbox);
-                });
+// Add event listener for third-filter checkboxes
+const thirdFilterCheckboxes = document.querySelectorAll('.third-filter');
+thirdFilterCheckboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+        handleThirdFilterCheckboxChange(checkbox);
+    });
+});
+
+// Function to handle third-filter checkbox change
+function handleThirdFilterCheckboxChange(checkbox) {
+    if (!checkbox.checked) {
+        // Prevent unchecking the currently selected third-filter checkbox
+        checkbox.checked = true;
+        return;
+    }
+
+    // Uncheck other checkboxes
+    thirdFilterCheckboxes.forEach(function(otherCheckbox) {
+        if (otherCheckbox !== checkbox) {
+            otherCheckbox.checked = false;
+        }
+    });
+
+    filterSquares(); // Update the filtering based on the new selection
+}
+        // Load obtained status when the page loads
+        function loadObtainedStatus() {
+            squares.forEach(function(square) {
+                const mountId = square.dataset.mountId;
+                const obtained = localStorage.getItem(mountId);
+                const checkbox = square.querySelector('.obtained-checkbox');
+                if (obtained === 'true') {
+                    checkbox.checked = true;
+                }
             });
+        }
+
+        loadObtainedStatus();
+    
+            // Load obtained status when the page loads
+            function loadObtainedStatus() {
+                squares.forEach(function(square) {
+                    const mountId = square.dataset.mountId;
+                    const obtained = localStorage.getItem(mountId);
+                    const checkbox = square.querySelector('.obtained-checkbox');
+                    if (obtained === 'true') {
+                        checkbox.checked = true;
+                    }
+                });
+            }
+    
+            loadObtainedStatus();
     
             // Event listeners for search input and tag checkboxes
             searchBars.forEach(function(searchBar) {
@@ -537,14 +595,14 @@
                 });
             });
     
-            // Add event listener for marking as obtained (checkbox)
+            // Add event listener for marking as obtained
             const obtainedCheckboxes = document.querySelectorAll('.obtained-checkbox');
             obtainedCheckboxes.forEach(function(checkbox) {
                 checkbox.addEventListener('click', function(event) {
                     event.stopPropagation(); // Prevent click event from bubbling up to the square
-                    const mountId = checkbox.parentElement.dataset.mountId;
-                    const obtained = checkbox.checked;
-                    updateObtainedStatus(mountId, obtained);
+                    const mountId = checkbox.closest('.square').dataset.mountId;
+                    localStorage.setItem(mountId, checkbox.checked);
+                    filterSquares(); // Update the filtering after marking as obtained
                 });
             });
     
@@ -553,14 +611,22 @@
             obtainedTexts.forEach(function(text) {
                 text.addEventListener('click', function(event) {
                     event.stopPropagation(); // Prevent click event from bubbling up to the square
-                    const checkbox = text.previousElementSibling; // Get the associated checkbox
-                    checkbox.click(); // Trigger a click event on the checkbox
+                    const checkbox = text.previousElementSibling; // Get the checkbox element
+                    checkbox.checked = !checkbox.checked; // Toggle checkbox state
+                    const mountId = text.closest('.square').dataset.mountId;
+                    localStorage.setItem(mountId, checkbox.checked);
+                    filterSquares(); // Update the filtering after marking as obtained
+                    event.preventDefault(); // Prevent default anchor tag behavior
                 });
             });
     
-            // Initial filtering on page load
-            filterSquares();
-        });
+            // Add event listener for faction checkboxes
+            factionCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    handleFactionCheckboxChange(checkbox);
+                });
+            });    
+        });      
     </script>
 </body>
 </html>
