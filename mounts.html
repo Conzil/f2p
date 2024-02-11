@@ -30,36 +30,44 @@
             margin-bottom: 0px;
             position: relative;
             overflow: hidden;
+            
         }
 
         .square img {
             width: 100%;
             height: auto;
         }
+        .obtained-checkbox-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: none; /* Hide by default */
+    align-items: center;
+    color: white;
+    font-size: 12px; /* Adjust font size as needed */
+}
 
-        .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            box-sizing: border-box;
-            display: none;
-        }
+.square:hover .obtained-checkbox-container {
+    display: flex; /* Show on hover */
+}
 
-        .overlay-text {
-            color: white;
-            font-size: 16px;
-        }
+.obtained-checkbox {
+    margin-right: 5px; /* Add some spacing between checkbox and text */
+    cursor: pointer; /* Change cursor to pointer when hovering over the checkbox */
+}
+
+.obtained-text {
+    cursor: pointer; /* Change cursor to pointer when hovering over the text */
+    /* Additional styling for the text if needed */
+}
 
         .additional-text {
             position: absolute;
-            top: 20px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             color: white;
-            font-size: 18px;
+            font-size: 14px;
             text-align: center;
         }
 
@@ -156,6 +164,36 @@
     .faction-filter-box input[type="checkbox"] {
         margin-right: 5px;
     }
+    .obtained-filter-box {
+        background-color: #262626;
+        padding: 10px;
+        border-radius: 0px;
+        display: flex;
+        flex-wrap: wrap;
+        width: 30%; /* Set width to 50% of the screen */
+        justify-content: space-between; /* Spread out the buttons evenly */
+    }
+
+    .obtained-filter-box label {
+        margin-bottom: 0px; /* Add some bottom margin for spacing */
+        width: calc(30%); /* Adjust width for 3 items per row */
+        text-align: center; /* Center-align the text */
+
+    }
+
+    .obtained-filter-box input[type="checkbox"] {
+        margin-right: 5px;
+    }
+
+    .filter-label {
+    display: inline-block; /* Ensure labels are displayed in a line */
+    margin-right: 10px; /* Add some spacing between labels */
+}
+
+.filter-text {
+    cursor: pointer; /* Change cursor to pointer when hovering over the text */
+    /* Additional styling for the text if needed */
+}
     </style>
 </head>
 <body>
@@ -169,7 +207,6 @@
             </div>
         </div>
     </header>
-
     <div class="filter-container">
         <div class="filter-box">
             <input type="text" class="search-bar" placeholder="Search for mounts...">
@@ -196,171 +233,212 @@
         <div class="faction-filter-box">
             <label><input type="checkbox" class="faction-filter" data-faction="alliance">Alliance</label>
             <label><input type="checkbox" class="faction-filter" data-faction="horde">Horde</label>
-            <label><input type="checkbox" class="faction-filter" data-faction="both" checked>Both</label>
+            <label><input type="checkbox" class="faction-filter" data-faction="both" checked>All</label>
         </div>
     </div>
-    <div class="row">
-        <a href="https://www.wowhead.com/spell=48778/acherus-deathcharger" class="square class-specific" data-faction-tag="both">
+    <div class="filter-container">
+        <div class="obtained-filter-box">
+            <label><input type="checkbox" class="obtained-filter" data-faction="owned">Obtained</label>
+            <label><input type="checkbox" class="obtained-filter" data-faction="not owned">Not Obtained</label>
+            <label><input type="checkbox" class="obtained-filter" data-faction="all" checked>All</label>
+        </div>
+    </div>
+<div class="obtained-checkbox-container" onclick="toggleCheckbox(this)">
+    <input type="checkbox" class="obtained-checkbox">
+    <span class="obtained-text">Mark as obtained</span>
+</div>
+    <div class="row"> 
+        <a href="https://www.wowhead.com/spell=48778/acherus-deathcharger" class="square class-specific" data-faction-tag="both" data-mount-id="acherus_deathcharger">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25280.jpg" alt="Acherus Deathcharger">
             <div class="additional-text">Acherus Deathcharger</div>
-            <div class="overlay">
-                <div class="overlay-text">Rewarded to Death Knights when completing the introduction quest [Into the Realm of Shadows].</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
-
-        <a href="https://www.wowhead.com/item=44178/reins-of-the-albino-drake" class="square achievement" data-faction-tag="both">
+        <a href="https://www.wowhead.com/item=44178/reins-of-the-albino-drake" class="square achievement" data-faction-tag="both" data-mount-id="albino_drake">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25836.jpg" alt="Albino Drake">
             <div class="additional-text">Albino Drake</div>
-            <div class="overlay">
-                <div class="overlay-text">Rewarded for completing the achievement [Leading the Cavalry].</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
-
         <a href="https://www.wowhead.com/item=44225/reins-of-the-armored-brown-bear" class="square wotlk" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27820.jpg" alt="Armored Brown Bear">
             <div class="additional-text">Armored Brown Bear</div>
-            <div class="overlay">
-                <div class="overlay-text">Sold by Mei Francis is Dalaran for 750 gold.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
-
         <a href="https://www.wowhead.com/item=44226/reins-of-the-armored-brown-bear" class="square wotlk" data-faction-tag="horde">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27821.jpg" alt="Armored Brown Bear">
             <div class="additional-text">Armored Brown Bear</div>
-            <div class="overlay">
-                <div class="overlay-text">Sold by Mei Francis is Dalaran for 750 gold.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
-
         <a href="https://www.wowhead.com/item=184062/gnawed-reins-of-the-battle-bound-warhound" class="square sl" data-faction-tag="both">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-98224.jpg" alt="Battle-Bound Warhound">
             <div class="additional-text">Battle-Bound Warhound</div>
-            <div class="overlay">
-                <div class="overlay-text">Has a small chance to drop on your first kill of the day for each of the four elites in the Theater of Pain outdoors arena in Maldraxxus.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=29465/black-battlestrider" class="square pvp" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14372.jpg" alt="Black Battlestrider">
             <div class="additional-text">Black Battlestrider</div>
-            <div class="overlay">
-                <div class="overlay-text">Sold by Lieutenant Karter in Stormwind City for 15 Mark of Honor.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=87795/reins-of-the-black-dragon-turtle" class="square pvp" data-faction-tag="both">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43717.jpg" alt="Black Dragon Turtle">
             <div class="additional-text">Black Dragon Turtle</div>
-            <div class="overlay">
-                <div class="overlay-text">Requires you to be Exalted with Huojin Pandaren / Tushui Pandaren or to play as a Pandaren to purchase this mount.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=29221/black-hawkstrider" class="square pvp" data-faction-tag="horde">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19478.jpg" alt="Black Hawkstrider">
             <div class="additional-text">Black Hawkstrider</div>
-            <div class="overlay">
-                <div class="overlay-text">Requires you to be Exalted with Silvermoon City or to play as a Blood Elf to purchase this mount.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=46308/black-skeletal-horse" class="square vanilla" data-faction-tag="horde">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-29130.jpg" alt="Black Skeletal Horse">
             <div class="additional-text">Black Skeletal Horse</div>
-            <div class="overlay">
-                <div class="overlay-text">Requires you to be Exalted with Undercity or to play as an Undead to purchase this mount.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=2411/black-stallion-bridle" class="square vanilla" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-2402.jpg" alt="Black Stallion">
             <div class="additional-text">Black Stallion</div>
-            <div class="overlay">
-                <div class="overlay-text">Requires you to be Exalted with Stormwind or to play as a Human to purchase this mount.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=44223/reins-of-the-black-war-bear" class="square pvp" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27818.jpg" alt="Black War Bear">
             <div class="additional-text">Black War Bear</div>
-            <div class="overlay">
-                <div class="overlay-text">Rewarded for completing the achievement [For The Alliance!] or [For The Horde!].</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=35906/reins-of-the-black-war-elekk" class="square pvp" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-23928.jpg" alt="Black War Elekk">
             <div class="additional-text">Black War Elekk</div>
-            <div class="overlay">
-                <div class="overlay-text">Sold by Lieutenant Karter in Stormwind City for 15 Mark of Honor.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=29466/black-war-kodo" class="square pvp" data-faction-tag="horde">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14348.jpg" alt="Black War Kodo">
             <div class="additional-text">Black War Kodo</div>
-            <div class="overlay">
-                <div class="overlay-text">Sold by Raider Bork in Orgrimmar for 15 Mark of Honor.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=44077/reins-of-the-black-war-mammoth" class="square pvp" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27247.jpg" alt="Black War Mammoth">
             <div class="additional-text">Black War Mammoth</div>
-            <div class="overlay">
-                <div class="overlay-text">Sold by Knight Dameron in Wintergrasp for 15 Mark of Honor when the Alliance has control over the zone.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=44077/reins-of-the-black-war-mammoth" class="square pvp" data-faction-tag="horde">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-27245.jpg" alt="Black War Mammoth">
             <div class="additional-text">Black War Mammoth</div>
-            <div class="overlay">
-                <div class="overlay-text">Sold by Stone Guard Mukar in Wintergrasp for 15 Mark of Honor when the Horde has control over the zone.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=29467/black-war-ram" class="square pvp" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14577.jpg" alt="Black War Ram">
             <div class="additional-text">Black War Ram</div>
-            <div class="overlay">
-                <div class="overlay-text">Sold by Lieutenant Karter in Stormwind City for 15 Mark of Honor.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=29472/whistle-of-the-black-war-raptor" class="square pvp" data-faction-tag="horde">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14388.jpg" alt="Black War Raptor">
             <div class="additional-text">Black War Rapto</div>
-            <div class="overlay">
-                <div class="overlay-text">Sold by Raider Bork in Orgrimmar for 15 Mark of Honor.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=29468/black-war-steed-bridle" class="square pvp" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14337.jpg" alt="Black War Steed">
             <div class="additional-text">Black War Steed</div>
-            <div class="overlay">
-                <div class="overlay-text">Sold by Lieutenant Karter in Stormwind City for 15 Mark of Honor.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=29471/reins-of-the-black-war-tiger" class="square pvp" data-faction-tag="alliance">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14330.jpg" alt="Black War Tiger">
             <div class="additional-text">Black War Tiger</div>
-            <div class="overlay">
-                <div class="overlay-text">Sold by Lieutenant Karter in Stormwind City for 15 Mark of Honor.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=29469/horn-of-the-black-war-wolf" class="square pvp" data-faction-tag="horde">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14334.jpg" alt="Black War Wolf">
             <div class="additional-text">Black War Wolf</div>
-            <div class="overlay">
-                <div class="overlay-text">Sold by Raider Bork in Orgrimmar for 15 Mark of Honor.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
 
         <a href="https://www.wowhead.com/item=29467/black-war-ram" class="square vanilla" data-faction-tag="horde">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-207.jpg" alt="Black Wolf">
             <div class="additional-text">Black Wolf</div>
-            <div class="overlay">
-                <div class="overlay-text">Requires you to be Exalted with Orgrimmar or to play as an Orc to purchase this mount.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
         <a href="https://www.wowhead.com/item=29467/black-war-ram" class="square bfa" data-faction-tag="both">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-55151.jpg" alt="Bloodgorged Hunter">
             <div class="additional-text">Bloodgorged Hunter</div>
-            <div class="overlay">
-                <div class="overlay-text">Has a small chance to drop from Island Expeditions containing bat-like creatures.</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Mark as obtained</span>
             </div>
         </a>
     </div>
 <script>
+    // Define the confirmRedirect function in the global scope
+    function confirmRedirect(element) {
+        if (element.classList.contains('mark-obtained')) {
+            // If it's the mark as obtained button, return without confirmation
+            return;
+        }
+
+        if (confirm("Are you sure you want to proceed?")) {
+            window.location.href = element.href;
+        }
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         const filterCheckboxes = document.querySelectorAll('.filter');
         const searchBars = document.querySelectorAll('.search-bar');
@@ -441,6 +519,48 @@
         filterCheckboxes.forEach(function(checkbox) {
             checkbox.addEventListener('change', filterSquares);
         });
+
+        // Add event listener for confirmation dialog before redirection
+        squares.forEach(function(square) {
+            square.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default link behavior
+                confirmRedirect(square); // Show confirmation dialog before redirecting
+            });
+        });
+
+        // Add event listener for marking as obtained
+        const obtainedCheckboxes = document.querySelectorAll('.obtained-checkbox');
+        obtainedCheckboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent click event from bubbling up to the square
+            });
+        });
+
+// Add event listener for marking as obtained (text)
+const obtainedTexts = document.querySelectorAll('.obtained-text');
+obtainedTexts.forEach(function(text) {
+    text.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent click event from bubbling up to the square
+        event.preventDefault(); // Prevent the default behavior of navigating to Wowhead
+        const checkbox = text.previousElementSibling; // Get the associated checkbox
+        checkbox.click(); // Trigger a click event on the checkbox
+        // Store the obtained status in localStorage
+        const mountId = checkbox.closest('.square').dataset.mountId;
+        localStorage.setItem(mountId, checkbox.checked ? 'obtained' : 'not obtained');
+    });
+});
+
+// Check localStorage for stored obtained status on page load
+document.addEventListener('DOMContentLoaded', function() {
+    squares.forEach(function(square) {
+        const mountId = square.dataset.mountId;
+        const obtainedStatus = localStorage.getItem(mountId);
+        if (obtainedStatus === 'obtained') {
+            const checkbox = square.querySelector('.obtained-checkbox');
+            checkbox.checked = true;
+        }
+    });
+});
 
         // Initial filtering on page load
         filterSquares();
