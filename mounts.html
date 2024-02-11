@@ -426,145 +426,141 @@
             </div>
         </a>
     </div>
-<script>
-    // Define the confirmRedirect function in the global scope
-    function confirmRedirect(element) {
-        if (element.classList.contains('mark-obtained')) {
-            // If it's the mark as obtained button, return without confirmation
-            return;
-        }
-
-        if (confirm("Are you sure you want to proceed?")) {
-            window.location.href = element.href;
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const filterCheckboxes = document.querySelectorAll('.filter');
-        const searchBars = document.querySelectorAll('.search-bar');
-        const squares = document.querySelectorAll('.square');
-        const factionCheckboxes = document.querySelectorAll('.faction-filter');
-
-        function filterSquares() {
-            const searchText = searchBars[0].value.toLowerCase().trim();
-            const selectedFaction = getSelectedFaction();
-
-            squares.forEach(function(square) {
-                const altText = square.querySelector('img').alt.toLowerCase();
-                const additionalText = square.querySelector('.additional-text').textContent.toLowerCase();
-                const tags = square.className.split(' ');
-                const matchesSearch = altText.includes(searchText) || additionalText.includes(searchText);
-                const factionTag = square.dataset.factionTag;
-
-                // Check if the square matches the search text
-                if (matchesSearch) {
-                    square.style.display = 'block'; // Show the square
-                } else {
-                    square.style.display = 'none'; // Hide the square
-                    return; // Exit the function if the square doesn't match the search text
-                }
-
-                // Check if any of the selected tags are associated with the square
-                let tagMatch = false;
-                filterCheckboxes.forEach(function(checkbox) {
-                    if (checkbox.checked && tags.includes(checkbox.dataset.tag)) {
-                        tagMatch = true;
-                    }
-                });
-
-                // Check if the square matches the selected faction
-                const factionMatch = selectedFaction === 'both' || factionTag === selectedFaction || (selectedFaction === 'alliance' && (factionTag === 'alliance' || factionTag === 'both')) || (selectedFaction === 'horde' && (factionTag === 'horde' || factionTag === 'both'));
-
-                // Show or hide the square based on tag and faction matching
-                if (!tagMatch || !factionMatch) {
-                    square.style.display = 'none'; // Hide the square if no tag or faction matches
-                }
-            });
-        }
-
-        function getSelectedFaction() {
-            const selectedFactionCheckbox = document.querySelector('.faction-filter:checked');
-            return selectedFactionCheckbox ? selectedFactionCheckbox.dataset.faction : 'both';
-        }
-
-        function handleFactionCheckboxChange(checkbox) {
-            if (!checkbox.checked) {
-                // Prevent unchecking the currently selected faction checkbox
-                checkbox.checked = true;
+    <script>
+        // Define the confirmRedirect function in the global scope
+        function confirmRedirect(element) {
+            if (element.classList.contains('mark-obtained')) {
+                // If it's the mark as obtained button, return without confirmation
                 return;
             }
-
-            // Uncheck other checkboxes
-            factionCheckboxes.forEach(function(otherCheckbox) {
-                if (otherCheckbox !== checkbox) {
-                    otherCheckbox.checked = false;
+    
+            if (confirm("Are you sure you want to proceed?")) {
+                window.location.href = element.href;
+            }
+        }
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve obtained mounts from localStorage
+            const obtainedMounts = JSON.parse(localStorage.getItem('obtainedMounts')) || {};
+    
+            // Function to update the obtained status of a mount
+            function updateObtainedStatus(mountId, obtained) {
+                obtainedMounts[mountId] = obtained;
+                localStorage.setItem('obtainedMounts', JSON.stringify(obtainedMounts));
+            }
+    
+            const filterCheckboxes = document.querySelectorAll('.filter');
+            const searchBars = document.querySelectorAll('.search-bar');
+            const squares = document.querySelectorAll('.square');
+            const factionCheckboxes = document.querySelectorAll('.faction-filter');
+    
+            function filterSquares() {
+                const searchText = searchBars[0].value.toLowerCase().trim();
+                const selectedFaction = getSelectedFaction();
+    
+                squares.forEach(function(square) {
+                    const altText = square.querySelector('img').alt.toLowerCase();
+                    const additionalText = square.querySelector('.additional-text').textContent.toLowerCase();
+                    const tags = square.className.split(' ');
+                    const matchesSearch = altText.includes(searchText) || additionalText.includes(searchText);
+                    const factionTag = square.dataset.factionTag;
+    
+                    // Check if the square matches the search text
+                    if (matchesSearch) {
+                        square.style.display = 'block'; // Show the square
+                    } else {
+                        square.style.display = 'none'; // Hide the square
+                        return; // Exit the function if the square doesn't match the search text
+                    }
+    
+                    // Check if any of the selected tags are associated with the square
+                    let tagMatch = false;
+                    filterCheckboxes.forEach(function(checkbox) {
+                        if (checkbox.checked && tags.includes(checkbox.dataset.tag)) {
+                            tagMatch = true;
+                        }
+                    });
+    
+                    // Check if the square matches the selected faction
+                    const factionMatch = selectedFaction === 'both' || factionTag === selectedFaction || (selectedFaction === 'alliance' && (factionTag === 'alliance' || factionTag === 'both')) || (selectedFaction === 'horde' && (factionTag === 'horde' || factionTag === 'both'));
+    
+                    // Show or hide the square based on tag and faction matching
+                    if (!tagMatch || !factionMatch) {
+                        square.style.display = 'none'; // Hide the square if no tag or faction matches
+                    }
+                });
+            }
+    
+            function getSelectedFaction() {
+                const selectedFactionCheckbox = document.querySelector('.faction-filter:checked');
+                return selectedFactionCheckbox ? selectedFactionCheckbox.dataset.faction : 'both';
+            }
+    
+            function handleFactionCheckboxChange(checkbox) {
+                if (!checkbox.checked) {
+                    // Prevent unchecking the currently selected faction checkbox
+                    checkbox.checked = true;
+                    return;
                 }
+    
+                // Uncheck other checkboxes
+                factionCheckboxes.forEach(function(otherCheckbox) {
+                    if (otherCheckbox !== checkbox) {
+                        otherCheckbox.checked = false;
+                    }
+                });
+    
+                filterSquares(); // Update the filtering based on the new selection
+            }
+    
+            // Add event listeners to the faction checkboxes
+            factionCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    handleFactionCheckboxChange(checkbox);
+                });
             });
-
-            filterSquares(); // Update the filtering based on the new selection
-        }
-
-        // Add event listeners to the faction checkboxes
-        factionCheckboxes.forEach(function(checkbox) {
-            checkbox.addEventListener('change', function() {
-                handleFactionCheckboxChange(checkbox);
+    
+            // Event listeners for search input and tag checkboxes
+            searchBars.forEach(function(searchBar) {
+                searchBar.addEventListener('input', filterSquares);
             });
-        });
-
-        // Event listeners for search input and tag checkboxes
-        searchBars.forEach(function(searchBar) {
-            searchBar.addEventListener('input', filterSquares);
-        });
-
-        filterCheckboxes.forEach(function(checkbox) {
-            checkbox.addEventListener('change', filterSquares);
-        });
-
-        // Add event listener for confirmation dialog before redirection
-        squares.forEach(function(square) {
-            square.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent default link behavior
-                confirmRedirect(square); // Show confirmation dialog before redirecting
+    
+            filterCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', filterSquares);
             });
-        });
-
-        // Add event listener for marking as obtained
-        const obtainedCheckboxes = document.querySelectorAll('.obtained-checkbox');
-        obtainedCheckboxes.forEach(function(checkbox) {
-            checkbox.addEventListener('click', function(event) {
-                event.stopPropagation(); // Prevent click event from bubbling up to the square
+    
+            // Add event listener for confirmation dialog before redirection
+            squares.forEach(function(square) {
+                square.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    confirmRedirect(square); // Show confirmation dialog before redirecting
+                });
             });
+    
+            // Add event listener for marking as obtained (checkbox)
+            const obtainedCheckboxes = document.querySelectorAll('.obtained-checkbox');
+            obtainedCheckboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('click', function(event) {
+                    event.stopPropagation(); // Prevent click event from bubbling up to the square
+                    const mountId = checkbox.parentElement.dataset.mountId;
+                    const obtained = checkbox.checked;
+                    updateObtainedStatus(mountId, obtained);
+                });
+            });
+    
+            // Add event listener for marking as obtained (text)
+            const obtainedTexts = document.querySelectorAll('.obtained-text');
+            obtainedTexts.forEach(function(text) {
+                text.addEventListener('click', function(event) {
+                    event.stopPropagation(); // Prevent click event from bubbling up to the square
+                    const checkbox = text.previousElementSibling; // Get the associated checkbox
+                    checkbox.click(); // Trigger a click event on the checkbox
+                });
+            });
+    
+            // Initial filtering on page load
+            filterSquares();
         });
-
-// Add event listener for marking as obtained (text)
-const obtainedTexts = document.querySelectorAll('.obtained-text');
-obtainedTexts.forEach(function(text) {
-    text.addEventListener('click', function(event) {
-        event.stopPropagation(); // Prevent click event from bubbling up to the square
-        event.preventDefault(); // Prevent the default behavior of navigating to Wowhead
-        const checkbox = text.previousElementSibling; // Get the associated checkbox
-        checkbox.click(); // Trigger a click event on the checkbox
-        // Store the obtained status in localStorage
-        const mountId = checkbox.closest('.square').dataset.mountId;
-        localStorage.setItem(mountId, checkbox.checked ? 'obtained' : 'not obtained');
-    });
-});
-
-// Check localStorage for stored obtained status on page load
-document.addEventListener('DOMContentLoaded', function() {
-    squares.forEach(function(square) {
-        const mountId = square.dataset.mountId;
-        const obtainedStatus = localStorage.getItem(mountId);
-        if (obtainedStatus === 'obtained') {
-            const checkbox = square.querySelector('.obtained-checkbox');
-            checkbox.checked = true;
-        }
-    });
-});
-
-        // Initial filtering on page load
-        filterSquares();
-    });
-</script>
+    </script>
 </body>
 </html>
