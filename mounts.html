@@ -462,45 +462,37 @@
             const factionCheckboxes = document.querySelectorAll('.faction-filter');
                 
             function filterSquares() {
-                const searchText = searchBars[0].value.toLowerCase().trim();
-                const selectedFaction = getSelectedFaction();
-    
-                squares.forEach(function(square) {
-                    const altText = square.querySelector('img').alt.toLowerCase();
-                    const additionalText = square.querySelector('.additional-text').textContent.toLowerCase();
-                    const tags = square.className.split(' ');
-                    const matchesSearch = altText.includes(searchText) || additionalText.includes(searchText);
-                    const factionTag = square.dataset.factionTag;
-    
-                    // Check if the square matches the search text
-                    if (matchesSearch) {
-                        square.style.display = 'block'; // Show the square
-                    } else {
-                        square.style.display = 'none'; // Hide the square
-                        return; // Exit the function if the square doesn't match the search text
-                    }
-    
-                    // Check if any of the selected tags are associated with the square
-                    let tagMatch = false;
-                    filterCheckboxes.forEach(function(checkbox) {
-                        if (checkbox.checked && tags.includes(checkbox.dataset.tag)) {
-                            tagMatch = true;
-                        }
-                    });
-    
-                    // Check if the square matches the selected faction
-                    const factionMatch = selectedFaction === 'both' || factionTag === selectedFaction || (selectedFaction === 'alliance' && (factionTag === 'alliance' || factionTag === 'both')) || (selectedFaction === 'horde' && (factionTag === 'horde' || factionTag === 'both'));
-    
-                    // Show or hide the square based on tag and faction matching
-                    if (!tagMatch || !factionMatch) {
-                        square.style.display = 'none'; // Hide the square if no tag or faction matches
-                    }
-                });
-            }
-            // Function to get the selected third filter value
-function getSelectedThirdFilter() {
-    const selectedThirdFilterCheckbox = document.querySelector('.third-filter:checked');
-    return selectedThirdFilterCheckbox ? selectedThirdFilterCheckbox.value : 'all';
+    const searchText = searchBars[0].value.toLowerCase().trim();
+    const selectedFaction = getSelectedFaction();
+    const selectedObtainedFilter = getSelectedObtainedFilter(); // Use the new function
+
+    squares.forEach(function(square) {
+        const altText = square.querySelector('img').alt.toLowerCase();
+        const additionalText = square.querySelector('.additional-text').textContent.toLowerCase();
+        const tags = square.className.split(' ');
+        const matchesSearch = altText.includes(searchText) || additionalText.includes(searchText);
+        const factionTag = square.dataset.factionTag;
+        const obtained = square.getAttribute('data-obtained') === 'true';
+
+        // Initially assume the square should be visible
+        let isVisible = matchesSearch;
+
+        // Check for faction match
+        const factionMatch = selectedFaction === 'both' || factionTag === selectedFaction || (selectedFaction === 'alliance' && (factionTag === 'alliance' || factionTag === 'both')) || (selectedFaction === 'horde' && (factionTag === 'horde' || factionTag === 'both'));
+        isVisible = isVisible && factionMatch;
+
+        // Check for obtained filter match
+        if (selectedObtainedFilter === 'owned' && !obtained || selectedObtainedFilter === 'not owned' && obtained) {
+            isVisible = false; // Hide the square if it does not match the obtained filter
+        }
+
+        // Apply visibility
+        square.style.display = isVisible ? 'block' : 'none';
+    });
+}
+            function getSelectedObtainedFilter() {
+    const selectedFilter = document.querySelector('.third-filter-box input[type="checkbox"]:checked').getAttribute('data-faction');
+    return selectedFilter; // will return 'owned', 'not owned', or 'all'
 }
             
     
@@ -550,31 +542,33 @@ function handleThirdFilterCheckboxChange(checkbox) {
 
     filterSquares(); // Update the filtering based on the new selection
 }
-        // Load obtained status when the page loads
-        function loadObtainedStatus() {
-            squares.forEach(function(square) {
-                const mountId = square.dataset.mountId;
-                const obtained = localStorage.getItem(mountId);
-                const checkbox = square.querySelector('.obtained-checkbox');
-                if (obtained === 'true') {
-                    checkbox.checked = true;
-                }
-            });
+function loadObtainedStatus() {
+    squares.forEach(function(square) {
+        const mountId = square.dataset.mountId;
+        const obtained = localStorage.getItem(mountId) === 'true';
+        const checkbox = square.querySelector('.obtained-checkbox');
+        checkbox.checked = obtained;
+        if (obtained) {
+            square.classList.add('obtained');
+        } else {
+            square.classList.remove('obtained');
         }
+    });
+}
 
-        loadObtainedStatus();
-    
-            // Load obtained status when the page loads
-            function loadObtainedStatus() {
-                squares.forEach(function(square) {
-                    const mountId = square.dataset.mountId;
-                    const obtained = localStorage.getItem(mountId);
-                    const checkbox = square.querySelector('.obtained-checkbox');
-                    if (obtained === 'true') {
-                        checkbox.checked = true;
-                    }
-                });
-            }
+function loadObtainedStatus() {
+    squares.forEach(function(square) {
+        const mountId = square.dataset.mountId;
+        const obtained = localStorage.getItem(mountId) === 'true';
+        const checkbox = square.querySelector('.obtained-checkbox');
+        checkbox.checked = obtained;
+        if (obtained) {
+            square.setAttribute('data-obtained', 'true');
+        } else {
+            square.removeAttribute('data-obtained');
+        }
+    });
+}
     
             loadObtainedStatus();
     
@@ -594,31 +588,34 @@ function handleThirdFilterCheckboxChange(checkbox) {
                     confirmRedirect(square); // Show confirmation dialog before redirecting
                 });
             });
-    
-            // Add event listener for marking as obtained
             const obtainedCheckboxes = document.querySelectorAll('.obtained-checkbox');
-            obtainedCheckboxes.forEach(function(checkbox) {
-                checkbox.addEventListener('click', function(event) {
-                    event.stopPropagation(); // Prevent click event from bubbling up to the square
-                    const mountId = checkbox.closest('.square').dataset.mountId;
-                    localStorage.setItem(mountId, checkbox.checked);
-                    filterSquares(); // Update the filtering after marking as obtained
-                });
-            });
+obtainedCheckboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent click event from bubbling up to the square
+        const square = checkbox.closest('.square'); // Get the closest parent .square element
+        const mountId = square.dataset.mountId;
+        localStorage.setItem(mountId, checkbox.checked);
+        // Set data-obtained attribute to true or false based on checkbox state
+        square.setAttribute('data-obtained', checkbox.checked.toString());
+        filterSquares(); // Update the filtering after marking as obtained
+    });
+});
     
-            // Add event listener for marking as obtained (text)
-            const obtainedTexts = document.querySelectorAll('.obtained-text');
-            obtainedTexts.forEach(function(text) {
-                text.addEventListener('click', function(event) {
-                    event.stopPropagation(); // Prevent click event from bubbling up to the square
-                    const checkbox = text.previousElementSibling; // Get the checkbox element
-                    checkbox.checked = !checkbox.checked; // Toggle checkbox state
-                    const mountId = text.closest('.square').dataset.mountId;
-                    localStorage.setItem(mountId, checkbox.checked);
-                    filterSquares(); // Update the filtering after marking as obtained
-                    event.preventDefault(); // Prevent default anchor tag behavior
-                });
-            });
+const obtainedTexts = document.querySelectorAll('.obtained-text');
+obtainedTexts.forEach(function(text) {
+    text.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent click event from bubbling up to the square
+        const checkbox = text.previousElementSibling; // Get the checkbox element
+        checkbox.checked = !checkbox.checked; // Toggle checkbox state
+        const square = text.closest('.square'); // Get the closest parent .square element
+        const mountId = square.dataset.mountId;
+        localStorage.setItem(mountId, checkbox.checked);
+        // Set data-obtained attribute to true or false based on checkbox state
+        square.setAttribute('data-obtained', checkbox.checked.toString());
+        filterSquares(); // Update the filtering after marking as obtained
+        event.preventDefault(); // Prevent default anchor tag behavior
+    });
+});
     
             // Add event listener for faction checkboxes
             factionCheckboxes.forEach(function(checkbox) {
