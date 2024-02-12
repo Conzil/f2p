@@ -15,9 +15,9 @@
         overflow-x: hidden;
     }
     .text {
-    text-align: center;
-    padding: 0px 0px;
-    margin: 0px 0px;
+        text-align: center;
+        padding: 0px 0px;
+        margin: 0px 0px;
     }
     .row {
         display: flex;
@@ -42,7 +42,7 @@
     .square:hover img {
         transform: scale(1.1); /* Scale up the image */
     }
-        .obtained-checkbox-container {
+    .obtained-checkbox-container {
         position: absolute;
         top: 10px;
         left: 10px;
@@ -51,9 +51,15 @@
         color: white;
         font-size: 12px; /* Adjust font size as needed */
     }
+    .obtained-checkbox-container:hover {
+        color: #D6D6D6;
+    }
 
     .square:hover .obtained-checkbox-container {
         display: flex; /* Show on hover */
+    }
+    .square:hover .additional-text {
+        color: #D6D6D6;
     }
 
     .obtained-checkbox {
@@ -76,6 +82,7 @@
     }
     .square:hover .overlay {
         display: flex;
+        
     }
     header {
         background-color: #262626;
@@ -107,11 +114,35 @@
         display: flex;
         flex-wrap: wrap;
         width: 50%; /* Set width to 50% of the screen */
-        justify-content: left;
+    }
+    .filter-buttons {
+        width: 100%; /* Take full width to ensure it breaks onto its own line */
+        display: block; /* Ensure it's a block container if flex settings interfere */
+        margin-top: 10px; /* Space before checkboxes start */
+        margin-bottom: 10px;
+        text-align: center;  
+    }
+    .filter-buttons button {
+        background-color: #333; /* Dark background color for the button */
+        color: white; /* Text color */
+        border: 1px solid #555; /* Slightly lighter border for some depth */
+        padding: 5px 10px; /* Increased padding for a larger button */
+        font-size: 16px; /* Larger font size makes the text inside the button bigger */
+        margin: 0 5px; /* Margin around buttons for spacing */
+        border-radius: 0px; /* Rounded corners */
+        cursor: pointer; /* Change cursor to pointer on hover */
+        transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
+    }
+    .filter-buttons button:hover {
+        background-color: #555; /* Lighter background color on hover */
+        border-color: #777; /* Lighter border color on hover */
     }
     .filter-box label {
         margin-bottom: 10px; /* Add some bottom margin for spacing */
         width: calc(25% - 10px); /* Adjust width for 4 items per row */
+    }
+    .filter-box label:hover {
+        color: #D6D6D6;
     }
     .filter-box input[type="checkbox"] {
         margin-right: 5px;
@@ -131,10 +162,14 @@
         width: 30%; /* Set width to 50% of the screen */
         justify-content: space-between; /* Spread out the buttons evenly */
     }
+
     .faction-filter-box label {
         margin-bottom: 0px; /* Add some bottom margin for spacing */
         width: calc(30%); /* Adjust width for 3 items per row */
         text-align: center; /* Center-align the text */
+    }
+    .faction-filter-box label:hover {
+        color: #D6D6D6;
     }
     .faction-filter-box input[type="checkbox"] {
         margin-right: 5px;
@@ -153,6 +188,9 @@
         margin-bottom: 0px; /* Add some bottom margin for spacing */
         width: calc(30%); /* Adjust width for 3 items per row */
         text-align: center; /* Center-align the text */
+    }
+    .third-filter-box label:hover {
+        color: #D6D6D6;
     }
     .third-filter-box input[type="checkbox"] {
         margin-right: 5px;
@@ -175,6 +213,10 @@
     <div class="filter-container">
         <div class="filter-box">
             <input type="text" class="search-bar" placeholder="Search for mounts...">
+            <div class="filter-buttons">
+                <button type="button" id="check-all">Check All</button>
+                <button type="button" id="uncheck-all">Uncheck All</button>
+            </div>
             <label><input type="checkbox" class="filter" data-tag="achievement" checked>Achievement</label>
             <label><input type="checkbox" class="filter" data-tag="df" checked>Dragonflight</label>
             <label><input type="checkbox" class="filter" data-tag="sl" checked>Shadowlands</label>
@@ -192,7 +234,6 @@
             <label><input type="checkbox" class="filter" data-tag="trading-post" checked>Trading Post</label>
             <label><input type="checkbox" class="filter" data-tag="class-specific" checked>Class Specific</label>
             <label><input type="checkbox" class="filter" data-tag="blingtron" checked>Blingtron</label>
-
         </div>
     </div>
 
@@ -210,11 +251,10 @@
             <label><input type="checkbox" class="third-filter" data-faction="all" checked>All</label>
         </div>
     </div>
-
-<div class="obtained-checkbox-container" onclick="toggleCheckbox(this)">
-    <input type="checkbox" class="obtained-checkbox">
+    <div class="obtained-checkbox-container" onclick="toggleCheckbox(this)">
+        <input type="checkbox" class="obtained-checkbox">
     <span class="obtained-text">Obtained</span>
-</div>
+    </div>
     <div class="row"> 
         <a href="https://www.wowhead.com/spell=48778/acherus-deathcharger" class="square class-specific" data-faction-tag="both" data-mount-id="48778" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25280.jpg" alt="Acherus Deathcharger">
@@ -264,7 +304,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=87795/reins-of-the-black-dragon-turtle" class="square pvp" data-faction-tag="both" data-mount-id="87795" data-obtained="false">
+        <a href="https://www.wowhead.com/item=87795/reins-of-the-black-dragon-turtle" class="square mop" data-faction-tag="both" data-mount-id="87795" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43717.jpg" alt="Black Dragon Turtle">
             <div class="additional-text">Black Dragon Turtle</div>
             <div class="obtained-checkbox-container">
@@ -272,7 +312,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29221/black-hawkstrider" class="square pvp" data-faction-tag="horde" data-mount-id="29221" data-obtained="false">
+        <a href="https://www.wowhead.com/item=29221/black-hawkstrider" class="square tbc" data-faction-tag="horde" data-mount-id="29221" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19478.jpg" alt="Black Hawkstrider">
             <div class="additional-text">Black Hawkstrider</div>
             <div class="obtained-checkbox-container">
@@ -384,7 +424,6 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-
         <a href="https://www.wowhead.com/item=46099/horn-of-the-black-wolf" class="square vanilla" data-faction-tag="horde" data-mount-id="46099" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-207.jpg" alt="Black Wolf">
             <div class="additional-text">Black Wolf</div>
@@ -401,7 +440,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=91009/reins-of-the-blue-dragon-turtle" class="square vanilla" data-faction-tag="both" data-mount-id="91009" data-obtained="false">
+        <a href="https://www.wowhead.com/item=91009/reins-of-the-blue-dragon-turtle" class="square mop" data-faction-tag="both" data-mount-id="91009" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43718.jpg" alt="Blue Dragon Turtle">
             <div class="additional-text">Blue Dragon Turtle</div>
             <div class="obtained-checkbox-container">
@@ -417,7 +456,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29220/blue-hawkstrider" class="square vanilla" data-faction-tag="horde" data-mount-id="29220" data-obtained="false">
+        <a href="https://www.wowhead.com/item=29220/blue-hawkstrider" class="square tbc" data-faction-tag="horde" data-mount-id="29220" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19480.jpg" alt="Blue Hawkstrider">
             <div class="additional-text">Blue Hawkstrider</div>
             <div class="obtained-checkbox-container">
@@ -441,7 +480,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=91005/reins-of-the-brown-dragon-turtle" class="square vanilla" data-faction-tag="both" data-mount-id="91005" data-obtained="false">
+        <a href="https://www.wowhead.com/item=91005/reins-of-the-brown-dragon-turtle" class="square mop" data-faction-tag="both" data-mount-id="91005" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43719.jpg" alt="Brown Dragon Turtle">
             <div class="additional-text">Brown Dragon Turtle</div>
             <div class="obtained-checkbox-container">
@@ -449,7 +488,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=28481/brown-elekk" class="square vanilla" data-faction-tag="alliance" data-mount-id="28481" data-obtained="false">
+        <a href="https://www.wowhead.com/item=28481/brown-elekk" class="square tbc" data-faction-tag="alliance" data-mount-id="28481" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-17063.jpg" alt="Brown Elekk">
             <div class="additional-text">Brown Elekk</div>
             <div class="obtained-checkbox-container">
@@ -665,6 +704,367 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
+        <a href="https://www.wowhead.com/item=8588/whistle-of-the-emerald-raptor" class="square vanilla" data-faction-tag="horde" data-mount-id="8588" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-4806.jpg" alt="Emerald Raptor">
+            <div class="additional-text">Emerald Raptor</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/spell=73629/summon-exarchs-elekk" class="square class-specific" data-faction-tag="alliance" data-mount-id="73629" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-31367.jpg" alt="Exarch's Elekk">
+            <div class="additional-text">Exarch's Elekk</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=169201/fabious" class="square bfa" data-faction-tag="both" data-mount-id="169201" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-88768.jpg" alt="Fabious">
+            <div class="additional-text">Fabious</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/spell=200175/felsaber" class="square class-specific" data-faction-tag="both" data-mount-id="200175" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-67575.jpg" alt="Felsaber">
+            <div class="additional-text">Felsaber</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/spell=5784/felsteed" class="square class-specific" data-faction-tag="both" data-mount-id="5784" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-2346.jpg" alt="Felsteed">
+            <div class="additional-text">Felsteed</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=34060/flying-machine" class="square profession" data-faction-tag="both" data-mount-id="34060" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-22719.jpg" alt="Flying Machine">
+            <div class="additional-text">Flying Machine</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=60954/fossilized-raptor" class="square profession" data-faction-tag="both" data-mount-id="60954" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-34410.jpg" alt="Fossilized Raptor">
+            <div class="additional-text">Fossilized Raptor</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=116794/garn-nighthowl" class="square wod" data-faction-tag="both" data-mount-id="116794" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-54114.jpg" alt="Garn Nighthowl">
+            <div class="additional-text">Garn Nighthowl</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=116779/garn-steelmaw" class="square wod" data-faction-tag="both" data-mount-id="116779" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-59756.jpg" alt="Garn Steelmaw">
+            <div class="additional-text">Garn Steelmaw</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=116673/giant-coldsnout" class="square wod" data-faction-tag="both" data-mount-id="116673" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-59737.jpg" alt="Giant Coldsnout">
+            <div class="additional-text">Giant Coldsnout</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=62461/goblin-trike-key" class="square cata" data-faction-tag="horde" data-mount-id="62461" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-35249.jpg" alt="Goblin Trike">
+            <div class="additional-text">Goblin Trike</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=62462/goblin-turbo-trike-key" class="square cata" data-faction-tag="horde" data-mount-id="62462" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-35250.jpg" alt="Goblin Turbo-Trike">
+            <div class="additional-text">Goblin Turbo-Trike</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=29744/gray-elekk" class="square tbc" data-faction-tag="alliance" data-mount-id="29744" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19869.jpg" alt="Gray Elekk">
+            <div class="additional-text">Gray Elekk</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=15277/gray-kodo" class="square vanilla" data-faction-tag="horde" data-mount-id="15277" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-12246.jpg" alt="Gray Kodo">
+            <div class="additional-text">Gray Kodo</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=5864/gray-ram" class="square vanilla" data-faction-tag="alliance" data-mount-id="5864" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-2736.jpg" alt="Gray Ram">
+            <div class="additional-text">Gray Ram</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=91011/reins-of-the-great-black-dragon-turtle" class="square mop" data-faction-tag="both" data-mount-id="91011" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43723.jpg" alt="Great Black Dragon Turtle">
+            <div class="additional-text">Great Black Dragon Turtle</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=91013/reins-of-the-great-blue-dragon-turtle" class="square mop" data-faction-tag="both" data-mount-id="91013" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43724.jpg" alt="Great Blue Dragon Turtle">
+            <div class="additional-text">Great Blue Dragon Turtle</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=29745/great-blue-elekk" class="square tbc" data-faction-tag="alliance" data-mount-id="29745" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19871.jpg" alt="Great Blue Elekk">
+            <div class="additional-text">Great Blue Elekk</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=91014/reins-of-the-great-brown-dragon-turtle" class="square mop" data-faction-tag="both" data-mount-id="91014" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43725.jpg" alt="Great Brown Dragon Turtle">
+            <div class="additional-text">Great Brown Dragon Turtle</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=18794/great-brown-kodo" class="square vanilla" data-faction-tag="horde" data-mount-id="18794" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14578.jpg" alt="Great Brown Kodo">
+            <div class="additional-text">Great Brown Kodo</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/spell=73630/summon-great-exarchs-elekk" class="square class-specific" data-faction-tag="alliance" data-mount-id="73630" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-31368.jpg" alt="Great Exarch's Elekk">
+            <div class="additional-text">Great Exarch's Elekk</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=18795/great-gray-kodo" class="square vanilla" data-faction-tag="horde" data-mount-id="18795" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14579.jpg" alt="Great Gray Kodo">
+            <div class="additional-text">Great Gray Kodo</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=91012/reins-of-the-great-green-dragon-turtle" class="square mop" data-faction-tag="both" data-mount-id="91012" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43722.jpg" alt="Great Green Dragon Turtle">
+            <div class="additional-text">Great Green Dragon Turtle</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=29746/great-green-elekk" class="square tbc" data-faction-tag="alliance" data-mount-id="29746" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19873.jpg" alt="Great Green Elekk">
+            <div class="additional-text">Great Green Elekk</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=116674/great-greytusk" class="square wod" data-faction-tag="both" data-mount-id="116674" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-59736.jpg" alt="Great Greytusk">
+            <div class="additional-text">Great Greytusk</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=91015/reins-of-the-great-purple-dragon-turtle" class="square mop" data-faction-tag="both" data-mount-id="91015" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43726.jpg" alt="Great Purple Dragon Turtle">
+            <div class="additional-text">Great Purple Dragon Turtle</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=29747/great-purple-elekk" class="square tbc" data-faction-tag="alliance" data-mount-id="29747" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19872.jpg" alt="Great Purple Elekk">
+            <div class="additional-text">Great Purple Elekk</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=82811/reins-of-the-great-red-dragon-turtle" class="square mop" data-faction-tag="both" data-mount-id="82811" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-42352.jpg" alt="Great Red Dragon Turtle">
+            <div class="additional-text">Great Red Dragon Turtle</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+
+        <a href="https://www.wowhead.com/item=18793/great-white-kodo" class="square vanilla" data-faction-tag="horde" data-mount-id="18793" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14349.jpg" alt="Great White Kodo">
+            <div class="additional-text">Great White Kodo</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=91004/reins-of-the-green-dragon-turtle" class="square mop" data-faction-tag="both" data-mount-id="91004" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-42250.jpg" alt="Green Dragon Turtle">
+            <div class="additional-text">Green Dragon Turtle</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=13321/green-mechanostrider" class="square vanilla" data-faction-tag="alliance" data-mount-id="13321" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-10661.jpg" alt="Green Mechanostrider">
+            <div class="additional-text">Green Mechanostrider</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=13334/green-skeletal-warhorse" class="square vanilla" data-faction-tag="horde" data-mount-id="13334" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-10720.jpg" alt="Green Skeletal Warhorse">
+            <div class="additional-text">Green Skeletal Warhorse</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=63046/reins-of-the-grey-riding-camel" class="square cata" data-faction-tag="both" data-mount-id="63046" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-35135.jpg" alt="Grey Riding Camel">
+            <div class="additional-text">Grey Riding Camel</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=166467/island-thunderscale" class="square bfa" data-faction-tag="both" data-mount-id="166467" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-90158.jpg" alt="Island Thunderscale">
+            <div class="additional-text">Island Thunderscale</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=91802/jade-pandaren-kite-string" class="square achievement" data-faction-tag="both" data-mount-id="91802" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-42147.jpg" alt="Jade Pandaren Kite">
+            <div class="additional-text">Jade Pandaren Kite</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=168370/rusted-keys-to-the-junkheap-drifter" class="square bfa" data-faction-tag="both" data-mount-id="168370" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-91634.jpg" alt="Junkheap Drifter">
+            <div class="additional-text">Junkheap Drifter</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=163575/reins-of-a-tamed-bloodfeaster" class="square bfa" data-faction-tag="both" data-mount-id="163575" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-76706.jpg" alt="Leaping Veinseeker">
+            <div class="additional-text">Leaping Veinseeker</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=138258/reins-of-the-long-forgotten-hippogryph" class="square legion" data-faction-tag="both" data-mount-id="138258" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-29361.jpg" alt="Long-Forgotten Hippogryph">
+            <div class="additional-text">Long-Forgotten Hippogryph</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=184167/mawsworn-soulhunter" class="square sl" data-faction-tag="both" data-mount-id="184167" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-92631.jpg" alt="Mawsworn Soulhunter">
+            <div class="additional-text">Mawsworn Soulhunter</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=140500/mechanized-lumber-extractor" class="square achievement" data-faction-tag="both" data-mount-id="140500" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-72071.jpg" alt="Mechanized Lumber Extractor">
+            <div class="additional-text">Mechanized Lumber Extractor</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=73838/mountain-horse" class="square cata" data-faction-tag="alliance" data-mount-id="73838" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-39096.jpg" alt="Mountain Horse">
+            <div class="additional-text">Mountain Horse</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=47101/ochre-skeletal-warhorse" class="square vanilla" data-faction-tag="horde" data-mount-id="47101" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-29754.jpg" alt="Ochre Skeletal Warhorse">
+            <div class="additional-text">Ochre Skeletal Warhorse</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=2414/pinto-bridle" class="square vanilla" data-faction-tag="alliance" data-mount-id="2414" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-2409.jpg" alt="Pinto">
+            <div class="additional-text">Pinto</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=152912/pond-nettle" class="square legion" data-faction-tag="both" data-mount-id="152912" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-79613.jpg" alt="Pond Nettle">
+            <div class="additional-text">Pond Nettle</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=140408/prestigious-azure-courser" class="square pvp" data-faction-tag="both" data-mount-id="140408" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-70996.jpg" alt="Prestigious Azure Courser">
+            <div class="additional-text">Prestigious Azure Courser</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
     </div>
     <script>
         // Define the confirmRedirect function in the global scope
@@ -673,24 +1073,21 @@
                 // If it's the mark as obtained button, return without confirmation
                 return;
             }
-    
-            if (confirm("Are you sure you want to proceed to https://www.wowhead.com/?")) {
+            if (confirm("Are you sure you want to proceed to https://www.wowhead.com?")) {
                 window.location.href = element.href;
             }
         }
-    
         document.addEventListener('DOMContentLoaded', function() {
-            const filterCheckboxes = document.querySelectorAll('.filter');
-            const searchBars = document.querySelectorAll('.search-bar');
-            const squares = document.querySelectorAll('.square');
-            const factionCheckboxes = document.querySelectorAll('.faction-filter');
-                
-            function filterSquares() {
-    const searchText = searchBars[0].value.toLowerCase().trim();
-    const selectedFaction = getSelectedFaction();
-    const selectedObtainedFilter = getSelectedObtainedFilter();
+        const filterCheckboxes = document.querySelectorAll('.filter');
+        const searchBars = document.querySelectorAll('.search-bar');
+        const squares = document.querySelectorAll('.square');
+        const factionCheckboxes = document.querySelectorAll('.faction-filter');      
+        function filterSquares() {
+        const searchText = searchBars[0].value.toLowerCase().trim();
+        const selectedFaction = getSelectedFaction();
+        const selectedObtainedFilter = getSelectedObtainedFilter();
 
-    squares.forEach(function(square) {
+        squares.forEach(function(square) {
         const altText = square.querySelector('img').alt.toLowerCase();
         const additionalText = square.querySelector('.additional-text').textContent.toLowerCase();
         const matchesSearch = altText.includes(searchText) || additionalText.includes(searchText);
@@ -718,51 +1115,64 @@
                 }
             }
         });
-
-        // Combine tag matching with previous visibility conditions
         isVisible = isVisible && tagMatch;
-
         square.style.display = isVisible ? 'block' : 'none';
     });
 }
-            function getSelectedObtainedFilter() {
+    // Check All button event listener
+    document.getElementById('check-all').addEventListener('click', function() {
+        const checkboxes = document.querySelectorAll('.filter-box .filter');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = true;
+        });
+        filterSquares(); // Call your filter function to apply changes
+    });
+
+    // Uncheck All button event listener
+    document.getElementById('uncheck-all').addEventListener('click', function() {
+        const checkboxes = document.querySelectorAll('.filter-box .filter');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+        filterSquares(); // Call your filter function to apply changes
+    });
+    function getSelectedObtainedFilter() {
     const selectedFilter = document.querySelector('.third-filter-box input[type="checkbox"]:checked').getAttribute('data-faction');
     return selectedFilter; // will return 'owned', 'not owned', or 'all'
-}
+    }
             
     
-            function getSelectedFaction() {
-                const selectedFactionCheckbox = document.querySelector('.faction-filter:checked');
-                return selectedFactionCheckbox ? selectedFactionCheckbox.dataset.faction : 'both';
+    function getSelectedFaction() {
+        const selectedFactionCheckbox = document.querySelector('.faction-filter:checked');
+        return selectedFactionCheckbox ? selectedFactionCheckbox.dataset.faction : 'both';
+    }
+    
+    function handleFactionCheckboxChange(checkbox) {
+        if (!checkbox.checked) {
+        // Prevent unchecking the currently selected faction checkbox
+        checkbox.checked = true;
+        return;
+        }
+    
+        // Uncheck other checkboxes
+        factionCheckboxes.forEach(function(otherCheckbox) {
+            if (otherCheckbox !== checkbox) {
+            otherCheckbox.checked = false;
             }
-    
-            function handleFactionCheckboxChange(checkbox) {
-                if (!checkbox.checked) {
-                    // Prevent unchecking the currently selected faction checkbox
-                    checkbox.checked = true;
-                    return;
-                }
-    
-                // Uncheck other checkboxes
-                factionCheckboxes.forEach(function(otherCheckbox) {
-                    if (otherCheckbox !== checkbox) {
-                        otherCheckbox.checked = false;
-                    }
-                });
-    
-                filterSquares(); // Update the filtering based on the new selection
-            }
-// Add event listener for third-filter checkboxes
-const thirdFilterCheckboxes = document.querySelectorAll('.third-filter');
-thirdFilterCheckboxes.forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
+        });
+        filterSquares(); // Update the filtering based on the new selection
+    }
+        // Add event listener for third-filter checkboxes
+        const thirdFilterCheckboxes = document.querySelectorAll('.third-filter');
+        thirdFilterCheckboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
         handleThirdFilterCheckboxChange(checkbox);
     });
 });
 
-// Function to handle third-filter checkbox change
-function handleThirdFilterCheckboxChange(checkbox) {
-    if (!checkbox.checked) {
+    // Function to handle third-filter checkbox change
+    function handleThirdFilterCheckboxChange(checkbox) {
+        if (!checkbox.checked) {
         // Prevent unchecking the currently selected third-filter checkbox
         checkbox.checked = true;
         return;
@@ -774,11 +1184,10 @@ function handleThirdFilterCheckboxChange(checkbox) {
             otherCheckbox.checked = false;
         }
     });
-
     filterSquares(); // Update the filtering based on the new selection
 }
-function loadObtainedStatus() {
-    squares.forEach(function(square) {
+        function loadObtainedStatus() {
+        squares.forEach(function(square) {
         const mountId = square.dataset.mountId;
         const obtained = localStorage.getItem(mountId) === 'true';
         const checkbox = square.querySelector('.obtained-checkbox');
@@ -791,7 +1200,7 @@ function loadObtainedStatus() {
     });
 }
 
-function loadObtainedStatus() {
+    function loadObtainedStatus() {
     squares.forEach(function(square) {
         const mountId = square.dataset.mountId;
         const obtained = localStorage.getItem(mountId) === 'true';
@@ -823,9 +1232,9 @@ function loadObtainedStatus() {
                     confirmRedirect(square); // Show confirmation dialog before redirecting
                 });
             });
-            const obtainedCheckboxes = document.querySelectorAll('.obtained-checkbox');
-obtainedCheckboxes.forEach(function(checkbox) {
-    checkbox.addEventListener('click', function(event) {
+        const obtainedCheckboxes = document.querySelectorAll('.obtained-checkbox');
+        obtainedCheckboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('click', function(event) {
         event.stopPropagation(); // Prevent click event from bubbling up to the square
         const square = checkbox.closest('.square'); // Get the closest parent .square element
         const mountId = square.dataset.mountId;
@@ -836,9 +1245,9 @@ obtainedCheckboxes.forEach(function(checkbox) {
     });
 });
     
-const obtainedTexts = document.querySelectorAll('.obtained-text');
-obtainedTexts.forEach(function(text) {
-    text.addEventListener('click', function(event) {
+        const obtainedTexts = document.querySelectorAll('.obtained-text');
+        obtainedTexts.forEach(function(text) {
+        text.addEventListener('click', function(event) {
         event.stopPropagation(); // Prevent click event from bubbling up to the square
         const checkbox = text.previousElementSibling; // Get the checkbox element
         checkbox.checked = !checkbox.checked; // Toggle checkbox state
@@ -850,8 +1259,7 @@ obtainedTexts.forEach(function(text) {
         filterSquares(); // Update the filtering after marking as obtained
         event.preventDefault(); // Prevent default anchor tag behavior
     });
-});
-    
+}); 
             // Add event listener for faction checkboxes
             factionCheckboxes.forEach(function(checkbox) {
                 checkbox.addEventListener('change', function() {
