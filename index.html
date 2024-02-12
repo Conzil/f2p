@@ -49,7 +49,7 @@
         display: none; /* Hide by default */
         align-items: center;
         color: white;
-        font-size: 12px; /* Adjust font size as needed */
+        font-size: 16px; /* Adjust font size as needed */
     }
     .obtained-checkbox-container:hover {
         color: #D6D6D6;
@@ -77,12 +77,14 @@
         left: 50%;
         transform: translateX(-50%);
         color: white;
-        font-size: 14px;
+        font-size: 16px;
         text-align: center;
+        margin-left: 0 -25px;
+
+        
     }
     .square:hover .overlay {
         display: flex;
-        
     }
     header {
         background-color: #262626;
@@ -94,7 +96,7 @@
         padding: 0 10px;
     }
     #logo {
-         height: 65px; /* Adjust based on your image */
+        height: 65px; /* Adjust based on your image */
         width: auto; /* Keeps the aspect ratio of the image */
         display: flex;
         justify-content: center; /* Centers content horizontally */
@@ -1086,7 +1088,7 @@
         const searchText = searchBars[0].value.toLowerCase().trim();
         const selectedFaction = getSelectedFaction();
         const selectedObtainedFilter = getSelectedObtainedFilter();
-
+        
         squares.forEach(function(square) {
         const altText = square.querySelector('img').alt.toLowerCase();
         const additionalText = square.querySelector('.additional-text').textContent.toLowerCase();
