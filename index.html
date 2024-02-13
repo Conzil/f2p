@@ -17,15 +17,6 @@
         background-position: center center;
         background-attachment: fixed;
     }
-
-    @media (max-width: 800px) {
-    body {
-        background-image: url('https://i.imgur.com/V6ADeGg.png'); /* Mobile-specific image */
-        background-size: cover;
-        background-position: center center;
-        background-attachment: fixed;
-    }
-}
     .text {
         text-align: center;
         padding: 0px 0px;
@@ -80,16 +71,19 @@
         position: absolute;
         top: 10px;
         left: 10px;
-        display: none; /* Hide by default */
+        /*display: none;*/
         align-items: center;
         color: white;
         font-size: 16px; /* Adjust font size as needed */
     }
+        /* Adjust width for screens less than or equal to 1200px */
+        @media (max-width: 1000px) {
+    .obtained-checkbox-container {
+        font-size: 14px;
+    }
+}
     .obtained-checkbox-container:hover {
         color: #D6D6D6;
-    }
-    .square:hover .obtained-checkbox-container {
-        display: flex; /* Show on hover */
     }
     .square:hover .additional-text {
         color: #D6D6D6;
@@ -154,7 +148,7 @@
 
     @media (max-width: 800px) {
     .filter-box {
-        font-size: 12px;
+        font-size: 14px;
     }
 }
     .filter-buttons {
@@ -207,6 +201,11 @@
         justify-content: space-between; /* Spread out the buttons evenly */
         border: 1px solid #555; /* Slightly lighter border for some depth */
     }
+    @media (max-width: 800px) {
+    .faction-filter-box {
+        font-size: 14px;
+    }
+}
     .faction-filter-box label {
         margin-bottom: 0px; /* Add some bottom margin for spacing */
         width: calc(30%); /* Adjust width for 3 items per row */
@@ -229,6 +228,11 @@
         justify-content: space-between; /* Spread out the buttons evenly */
         border: 1px solid #555; /* Slightly lighter border for some depth */
     }
+    @media (max-width: 800px) {
+    .third-filter-box {
+        font-size: 14px;
+    }
+}
     .third-filter-box label {
         margin-bottom: 0px; /* Add some bottom margin for spacing */
         width: calc(30%); /* Adjust width for 3 items per row */
