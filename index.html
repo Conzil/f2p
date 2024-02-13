@@ -12,7 +12,6 @@
         margin: 0;
         padding: 0 10px;
         overflow-x: hidden;
-
         background-image: url('https://i.imgur.com/i5PslN1.png');
         background-size: cover;
         background-position: center center;
@@ -36,6 +35,30 @@
         overflow: hidden;
         border: 1px solid #555; /* Slightly lighter border for some depth */
     }
+    /* Adjust width for screens less than or equal to 1200px */
+    @media (max-width: 1200px) {
+    .square {
+        width: calc(33% - 10px);
+    }
+}
+    /* Adjust width for screens less than or equal to 1200px */
+    @media (max-width: 1600px) {
+    .square {
+        width: calc(25% - 10px);
+    }
+}
+    /* Adjust width for screens less than or equal to 1200px */
+    @media (max-width: 1300px) {
+    .square {
+        width: calc(33% - 10px);
+    }
+}
+    /* Adjust width for screens less than or equal to 1200px */
+    @media (max-width: 1000px) {
+    .square {
+        width: calc(50% - 10px);
+    }
+}
     .square img {
         width: 100%;
         height: 100%;
@@ -56,23 +79,19 @@
     .obtained-checkbox-container:hover {
         color: #D6D6D6;
     }
-
     .square:hover .obtained-checkbox-container {
         display: flex; /* Show on hover */
     }
     .square:hover .additional-text {
         color: #D6D6D6;
     }
-
     .obtained-checkbox {
         margin-right: 5px; /* Add some spacing between checkbox and text */
         cursor: pointer; /* Change cursor to pointer when hovering over the checkbox */
     }
-
     .obtained-text {
         cursor: pointer; /* Change cursor to pointer when hovering over the text */
     }
-
     .additional-text {
         position: absolute;
         bottom: 20px;
@@ -82,8 +101,6 @@
         font-size: 16px;
         text-align: center;
         margin-left: 0 -25px;
-
-        
     }
     .square:hover .overlay {
         display: flex;
@@ -93,11 +110,12 @@
         display: flex;
         justify-content: center; /* Centers content horizontally */
         align-items: center; /* Centers content vertically */
-        width: 50%;
+        max-width: 800px;
+        width: 95%;
         margin: 0 auto;
         padding: 0 10px;
         border: 1px solid #555; /* Slightly lighter border for some depth */
-
+        flex-wrap: wrap;
     }
     #logo {
         height: 65px; /* Adjust based on your image */
@@ -112,7 +130,6 @@
         justify-content: center; 
         margin-bottom: 10px; /* Increase margin-bottom for more spacing */
         margin-top: 10px;
-        
     }
     .filter-box {
         background-color: #181818;
@@ -120,10 +137,17 @@
         border-radius: 0px;
         display: flex;
         flex-wrap: wrap;
-        width: 50%; /* Set width to 50% of the screen */
+        max-width: 800px;
+        width: 95%;
         border: 1px solid #555; /* Slightly lighter border for some depth */
-
+        font-size: 14px;
     }
+
+    @media (max-width: 800px) {
+    .filter-box {
+        font-size: 12px;
+    }
+}
     .filter-buttons {
         width: 100%; /* Take full width to ensure it breaks onto its own line */
         display: block; /* Ensure it's a block container if flex settings interfere */
@@ -162,7 +186,6 @@
         box-sizing: border-box;
         margin: 5px;
         border: 1px solid #555; /* Slightly lighter border for some depth */
-
     }
     .faction-filter-box {
         background-color: #181818;
@@ -170,10 +193,10 @@
         border-radius: 0px;
         display: flex;
         flex-wrap: wrap;
-        width: 30%; /* Set width to 50% of the screen */
+        max-width: 800px;
+        width: 95%;
         justify-content: space-between; /* Spread out the buttons evenly */
         border: 1px solid #555; /* Slightly lighter border for some depth */
-
     }
     .faction-filter-box label {
         margin-bottom: 0px; /* Add some bottom margin for spacing */
@@ -192,9 +215,9 @@
         border-radius: 0px;
         display: flex;
         flex-wrap: wrap;
-        width: 30%; /* Set width to 50% of the screen */
+        max-width: 800px;
+        width: 100%;
         justify-content: space-between; /* Spread out the buttons evenly */
-        margin: 0 10px; /* Decreased horizontal margin */
         border: 1px solid #555; /* Slightly lighter border for some depth */
     }
     .third-filter-box label {
