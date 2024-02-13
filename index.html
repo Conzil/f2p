@@ -64,9 +64,12 @@
         height: 100%;
         transition: transform 0.3s ease; /* Smooth transition for zoom effect */
     }
+
+    @media (min-width: 1400px) {
     .square:hover img {
         transform: scale(1.1); /* Scale up the image */
     }
+}
     .obtained-checkbox-container {
         position: absolute;
         top: 10px;
@@ -78,16 +81,20 @@
     }
         /* Adjust width for screens less than or equal to 1200px */
         @media (max-width: 1000px) {
-    .obtained-checkbox-container {
+        .obtained-checkbox-container {
         font-size: 14px;
     }
 }
+@media (min-width: 1000px) {
     .obtained-checkbox-container:hover {
         color: #D6D6D6;
     }
+}
+@media (min-width: 1000px) {
     .square:hover .additional-text {
         color: #D6D6D6;
     }
+}
     .obtained-checkbox {
         margin-right: 5px; /* Add some spacing between checkbox and text */
         cursor: pointer; /* Change cursor to pointer when hovering over the checkbox */
