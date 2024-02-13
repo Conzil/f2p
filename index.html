@@ -7,12 +7,16 @@
     <link rel="icon" href="https://i.imgur.com/JFtudNe.png" type="image/png">
     <style>
     body {
-        background-color: #0F0F0F;
         color: white;
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0 10px;
         overflow-x: hidden;
+
+        background-image: url('https://i.imgur.com/i5PslN1.png');
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
     }
     .text {
         text-align: center;
@@ -27,12 +31,10 @@
     .square {
         width: calc(20% - 10px);
         box-sizing: border-box;
-        margin-right: 5px;
-        margin-left: 5px;
-        margin-top: 5px;
-        margin-bottom: 5px;
+        margin: 5px;
         position: relative;
         overflow: hidden;
+        border: 1px solid #555; /* Slightly lighter border for some depth */
     }
     .square img {
         width: 100%;
@@ -87,13 +89,15 @@
         display: flex;
     }
     header {
-        background-color: #262626;
+        background-color: #181818;
         display: flex;
         justify-content: center; /* Centers content horizontally */
         align-items: center; /* Centers content vertically */
         width: 50%;
         margin: 0 auto;
         padding: 0 10px;
+        border: 1px solid #555; /* Slightly lighter border for some depth */
+
     }
     #logo {
         height: 65px; /* Adjust based on your image */
@@ -106,16 +110,19 @@
     .filter-container { 
         display: flex; 
         justify-content: center; 
-        margin-bottom: 25px; /* Increase margin-bottom for more spacing */
-        margin-top: 30px;
+        margin-bottom: 10px; /* Increase margin-bottom for more spacing */
+        margin-top: 10px;
+        
     }
     .filter-box {
-        background-color: #262626;
+        background-color: #181818;
         padding: 10px;
         border-radius: 0px;
         display: flex;
         flex-wrap: wrap;
         width: 50%; /* Set width to 50% of the screen */
+        border: 1px solid #555; /* Slightly lighter border for some depth */
+
     }
     .filter-buttons {
         width: 100%; /* Take full width to ensure it breaks onto its own line */
@@ -125,7 +132,7 @@
         text-align: center;  
     }
     .filter-buttons button {
-        background-color: #333; /* Dark background color for the button */
+        background-color: #0075FF; /* Dark background color for the button */
         color: white; /* Text color */
         border: 1px solid #555; /* Slightly lighter border for some depth */
         padding: 5px 10px; /* Increased padding for a larger button */
@@ -136,8 +143,8 @@
         transition: background-color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
     }
     .filter-buttons button:hover {
-        background-color: #555; /* Lighter background color on hover */
-        border-color: #777; /* Lighter border color on hover */
+        background-color: #181818; /* Lighter background color on hover */
+        border-color: #555; /* Lighter border color on hover */
     }
     .filter-box label {
         margin-bottom: 10px; /* Add some bottom margin for spacing */
@@ -153,18 +160,21 @@
         width: 100%;
         padding: 10px;
         box-sizing: border-box;
-        margin-bottom: 10px;
+        margin: 5px;
+        border: 1px solid #555; /* Slightly lighter border for some depth */
+
     }
     .faction-filter-box {
-        background-color: #262626;
+        background-color: #181818;
         padding: 10px;
         border-radius: 0px;
         display: flex;
         flex-wrap: wrap;
         width: 30%; /* Set width to 50% of the screen */
         justify-content: space-between; /* Spread out the buttons evenly */
-    }
+        border: 1px solid #555; /* Slightly lighter border for some depth */
 
+    }
     .faction-filter-box label {
         margin-bottom: 0px; /* Add some bottom margin for spacing */
         width: calc(30%); /* Adjust width for 3 items per row */
@@ -177,7 +187,7 @@
         margin-right: 5px;
     }
     .third-filter-box {
-        background-color: #262626;
+        background-color: #181818;
         padding: 10px;
         border-radius: 0px;
         display: flex;
@@ -185,6 +195,7 @@
         width: 30%; /* Set width to 50% of the screen */
         justify-content: space-between; /* Spread out the buttons evenly */
         margin: 0 10px; /* Decreased horizontal margin */
+        border: 1px solid #555; /* Slightly lighter border for some depth */
     }
     .third-filter-box label {
         margin-bottom: 0px; /* Add some bottom margin for spacing */
@@ -267,6 +278,14 @@
         <a href="https://www.wowhead.com/item=44178/reins-of-the-albino-drake" target="_blank" class="square achievement" data-faction-tag="both" data-mount-id="44178" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25836.jpg" alt="Albino Drake">
             <div class="additional-text">Albino Drake</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=141713/arcadian-war-turtle" target="_blank" class="square legion" data-faction-tag="both" data-mount-id="141713" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-68848.jpg" alt="Arcadian War Turtle">
+            <div class="additional-text">Arcadian War Turtle</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
                 <span class="obtained-text">Obtained</span>
@@ -432,7 +451,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=166468/bloodgorged-hunter" target="_blank" class="square sl" data-faction-tag="both" data-mount-id="166468" data-obtained="false">
+        <a href="https://www.wowhead.com/item=166468/bloodgorged-hunter" target="_blank" class="square bfa" data-faction-tag="both" data-mount-id="166468" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-55151.jpg" alt="Bloodgorged Hunter">
             <div class="additional-text">Bloodgorged Hunter</div>
             <div class="obtained-checkbox-container">
@@ -666,7 +685,7 @@
         </a>
         <a href="https://www.wowhead.com/item=87250/depleted-kyparium-rocket" target="_blank" class="square blingtron" data-faction-tag="both" data-mount-id="87250" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43637.jpg" alt="Depleted-Kyparium Rocket">
-            <div class="additional-text">Depleted-Kyparium Rocket</div>
+            <div class="additional-text">Depleted-Kyparium Rocket</div>talbuk
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
                 <span class="obtained-text">Obtained</span>
@@ -760,6 +779,33 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
+
+        <a href="https://www.wowhead.com/item=19029/horn-of-the-frostwolf-howler" target="_blank" class="square vanilla" data-faction-tag="horde" data-mount-id="19029" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14776.jpg" alt="Frostwolf Howler">
+            <div class="additional-text">Frostwolf Howler</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=172023/frostwolf-snarler" target="_blank" class="square world-event" data-faction-tag="both" data-mount-id="172023" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-92901.jpg" alt="Frostwolf Snarler">
+            <div class="additional-text">Frostwolf Snarler</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+
+        <a href="https://www.wowhead.com/item=212227/reins-of-the-fur-endship-fox" target="_blank" class="square trading-post" data-faction-tag="both" data-mount-id="212227" data-obtained="false">
+            <img src="https://i.imgur.com/aOyU5e9.png" alt="Fur-endship Fox">
+            <div class="additional-text">Fur-endship Fox</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        
         <a href="https://www.wowhead.com/item=116794/garn-nighthowl" target="_blank" class="square wod" data-faction-tag="both" data-mount-id="116794" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-54114.jpg" alt="Garn Nighthowl">
             <div class="additional-text">Garn Nighthowl</div>
@@ -771,6 +817,14 @@
         <a href="https://www.wowhead.com/item=116779/garn-steelmaw" target="_blank" class="square wod" data-faction-tag="both" data-mount-id="116779" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-59756.jpg" alt="Garn Steelmaw">
             <div class="additional-text">Garn Steelmaw</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=87251/geosynchronous-world-spinner" target="_blank" class="square blingtron" data-faction-tag="both" data-mount-id="87251" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43638.jpg" alt="Geosynchronous World Spinner">
+            <div class="additional-text">Geosynchronous World Spinner</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
                 <span class="obtained-text">Obtained</span>
@@ -795,6 +849,14 @@
         <a href="https://www.wowhead.com/item=62462/goblin-turbo-trike-key" target="_blank" class="square cata" data-faction-tag="horde" data-mount-id="62462" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-35250.jpg" alt="Goblin Turbo-Trike">
             <div class="additional-text">Goblin Turbo-Trike</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=163573/goldenmanes-reins" target="_blank" class="square bfa" data-faction-tag="both" data-mount-id="163573" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-81690.jpg" alt="Goldenmane's Reins">
+            <div class="additional-text">Goldenmane's Reins</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
                 <span class="obtained-text">Obtained</span>
@@ -928,7 +990,14 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-
+        <a href="https://www.wowhead.com/spell=69826/summon-great-sunwalker-kodo" target="_blank" class="square class-specific" data-faction-tag="horde" data-mount-id="69820" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-30501.jpg" alt="Great Sunwalker Kodo">
+            <div class="additional-text">Great Sunwalker Kodo</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
         <a href="https://www.wowhead.com/item=18793/great-white-kodo" target="_blank" class="square vanilla" data-faction-tag="horde" data-mount-id="18793" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14349.jpg" alt="Great White Kodo">
             <div class="additional-text">Great White Kodo</div>
@@ -985,6 +1054,22 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
+        <a href="https://www.wowhead.com/item=83088/jade-panther" target="_blank" class="square blingtron" data-faction-tag="both" data-mount-id="83088" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-42502.jpg" alt="Jade Panther">
+            <div class="additional-text">Jade Panther</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=82453/jeweled-onyx-panther" target="_blank" class="square blingtron" data-faction-tag="both" data-mount-id="82453" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-42185.jpg" alt="Jeweled Onyx Panther">
+            <div class="additional-text">Jeweled Onyx Panther</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
         <a href="https://www.wowhead.com/item=168370/rusted-keys-to-the-junkheap-drifter" target="_blank" class="square bfa" data-faction-tag="both" data-mount-id="168370" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-91634.jpg" alt="Junkheap Drifter">
             <div class="additional-text">Junkheap Drifter</div>
@@ -1025,6 +1110,22 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
+        <a href="https://www.wowhead.com/item=41508/mechano-hog" target="_blank" class="square blingtron" data-faction-tag="horde" data-mount-id="140500" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25871.jpg" alt="Mechano-Hog">
+            <div class="additional-text">Mechano-Hog</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=44413/mekgineers-chopper" target="_blank" class="square blingtron" data-faction-tag="alliance" data-mount-id="140500" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25870.jpg" alt="Mekgineer's Chopper">
+            <div class="additional-text">Mekgineer's Chopper</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
         <a href="https://www.wowhead.com/item=73838/mountain-horse" target="_blank" class="square cata" data-faction-tag="alliance" data-mount-id="73838" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-39096.jpg" alt="Mountain Horse">
             <div class="additional-text">Mountain Horse</div>
@@ -1049,7 +1150,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=152912/pond-nettle" target="_blank" class="square legion" data-faction-tag="both" data-mount-id="152912" data-obtained="false">
+        <a href="https://www.wowhead.com/item=152912/pond-nettle" target="_blank" class="square profession" data-faction-tag="both" data-mount-id="152912" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-79613.jpg" alt="Pond Nettle">
             <div class="additional-text">Pond Nettle</div>
             <div class="obtained-checkbox-container">
@@ -1060,6 +1161,14 @@
         <a href="https://www.wowhead.com/item=140408/prestigious-azure-courser" target="_blank" class="square achievement" data-faction-tag="both" data-mount-id="140408" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-70996.jpg" alt="Prestigious Azure Courser">
             <div class="additional-text">Prestigious Azure Courser</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=164250/prestigious-bloodforged-courser" target="_blank" class="square achievement" data-faction-tag="both" data-mount-id="164250" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-88359.jpg" alt="Prestigious Bloodforged Courser">
+            <div class="additional-text">Prestigious Bloodforged Courser</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
                 <span class="obtained-text">Obtained</span>
@@ -1089,6 +1198,14 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
+        <a href="https://www.wowhead.com/item=140407/prestigious-midnight-courser" target="_blank" class="square achievement" data-faction-tag="both" data-mount-id="140407" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-71000.jpg" alt="Prestigious Midnight Courser">
+            <div class="additional-text">Prestigious Midnight Courser</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
         <a href="https://www.wowhead.com/item=140230/prestigious-royal-courser" target="_blank" class="square achievement" data-faction-tag="both" data-mount-id="140230" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-70997.jpg" alt="Prestigious Royal Courser">
             <div class="additional-text">Prestigious Royal Courser</div>
@@ -1097,7 +1214,6 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-
         <a href="https://www.wowhead.com/item=87799/reins-of-the-purple-dragon-turtle" target="_blank" class="square mop" data-faction-tag="both" data-mount-id="87799" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43720.jpg" alt="Purple Dragon Turtle">
             <div class="additional-text">Purple Dragon Turtle</div>
@@ -1138,7 +1254,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=207083/gift-of-the-ravenous-black-gryphon" target="_blank" class="square df" data-faction-tag="alliance" data-mount-id="206674" data-obtained="false">
+        <a href="https://www.wowhead.com/item=207083/gift-of-the-ravenous-black-gryphon" target="_blank" class="square df" data-faction-tag="both" data-mount-id="206674" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-85524.jpg" alt="Ravenous Black Gryphon">
             <div class="additional-text">Ravenous Black Gryphon</div>
             <div class="obtained-checkbox-container">
@@ -1149,6 +1265,14 @@
         <a href="https://www.wowhead.com/item=91007/reins-of-the-red-dragon-turtle" target="_blank" class="square mop" data-faction-tag="both" data-mount-id="91007" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-43721.jpg" alt="Red Dragon Turtle">
             <div class="additional-text">Red Dragon Turtle</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=44842/red-dragonhawk" target="_blank" class="square achievement" data-faction-tag="horde" data-mount-id="44842" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-28402.jpg" alt="Red Dragonhawk">
+            <div class="additional-text">Red Dragonhawk</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
                 <span class="obtained-text">Obtained</span>
@@ -1186,7 +1310,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=23720/riding-turtle" target="_blank" class="square tbc" data-faction-tag="both" data-mount-id="23720" data-obtained="false">
+        <a href="https://www.wowhead.com/item=23720/riding-turtle" target="_blank" class="square profession" data-faction-tag="both" data-mount-id="23720" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-17158.jpg" alt="Riding Turtle">
             <div class="additional-text">Riding Turtle</div>
             <div class="obtained-checkbox-container">
@@ -1210,6 +1334,14 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
+        <a href="https://www.wowhead.com/item=83087/ruby-panther" target="_blank" class="square blingtron" data-faction-tag="both" data-mount-id="83088" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-42499.jpg" alt="Ruby Panther">
+            <div class="additional-text">Ruby Panther</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
         <a href="https://www.wowhead.com/item=168823/rusty-mechanocrawler" target="_blank" class="square bfa" data-faction-tag="both" data-mount-id="168823" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-90711.jpg" alt="Rusty Mechanocrawler">
             <div class="additional-text">Rusty Mechanocrawler</div>
@@ -1226,6 +1358,14 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
+        <a href="https://www.wowhead.com/item=83090/sapphire-panther" target="_blank" class="square blingtron" data-faction-tag="both" data-mount-id="83090" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-42500.jpg" alt="Sapphire Panther">
+            <div class="additional-text">Sapphire Panther</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
         <a href="https://www.wowhead.com/item=116767/sapphire-riverbeast" target="_blank" class="square wod" data-faction-tag="both" data-mount-id="116767" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-59744.jpg" alt="Sapphire Riverbeast">
             <div class="additional-text">Sapphire Riverbeast</div>
@@ -1234,7 +1374,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=46109/sea-turtle" target="_blank" class="square wotlk" data-faction-tag="both" data-mount-id="46109" data-obtained="false">
+        <a href="https://www.wowhead.com/item=46109/sea-turtle" target="_blank" class="square profession" data-faction-tag="both" data-mount-id="46109" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-29161.jpg" alt="Sea Turtle">
             <div class="additional-text">Sea Turtle</div>
             <div class="obtained-checkbox-container">
@@ -1362,6 +1502,23 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
+        <a href="https://www.wowhead.com/item=83089/sunstone-panther" target="_blank" class="square blingtron" data-faction-tag="both" data-mount-id="83089" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-42501.jpg" alt="Sunstone Panther">
+            <div class="additional-text">Sunstone Panther</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/spell=69820/summon-sunwalker-kodo" target="_blank" class="square class-specific" data-faction-tag="horde" data-mount-id="69820" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-30366.jpg" alt="Sunwalker Kodo">
+            <div class="additional-text">Sunwalker Kodo</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+
         <a href="https://www.wowhead.com/item=163585/surf-jelly" target="_blank" class="square bfa" data-faction-tag="both" data-mount-id="163585" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-87747.jpg" alt="Surf Jelly">
             <div class="additional-text">Surf Jelly</div>
@@ -1469,6 +1626,297 @@
         <a href="https://www.wowhead.com/item=18767/reins-of-the-swift-mistsaber" target="_blank" class="square vanilla" data-faction-tag="alliance" data-mount-id="18767" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14332.jpg" alt="Swift Mistsaber">
             <div class="additional-text">Swift Mistsaber</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=73839/swift-mountain-horse" target="_blank" class="square cata" data-faction-tag="alliance" data-mount-id="73839" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-39095.jpg" alt="Swift Mountain Horse">
+            <div class="additional-text">Swift Mountain Horse</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=18789/swift-olive-raptor" target="_blank" class="square vanilla" data-faction-tag="horde" data-mount-id="18789" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14344.jpg" alt="Swift Olive Raptor">
+            <div class="additional-text">Swift Olive Raptor</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=18790/swift-orange-raptor" target="_blank" class="square vanilla" data-faction-tag="horde" data-mount-id="18790" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14342.jpg" alt="Swift Orange Raptor">
+            <div class="additional-text">Swift Orange Raptor</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=18776/swift-palomino" target="_blank" class="square vanilla" data-faction-tag="alliance" data-mount-id="18776" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14582.jpg" alt="Swift Palomino">
+            <div class="additional-text">Swift Palomino</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=28936/swift-pink-hawkstrider" target="_blank" class="square tbc" data-faction-tag="alliance" data-mount-id="28936" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-18697.jpg" alt="Swift Pink Hawkstrider">
+            <div class="additional-text">Swift Pink Hawkstrider</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=29224/swift-purple-hawkstrider" target="_blank" class="square tbc" data-faction-tag="alliance" data-mount-id="29224" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19482.jpg" alt="Swift Purple Hawkstrider">
+            <div class="additional-text">Swift Purple Hawkstrider</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=72145/swift-springstrider" target="_blank" class="square world-event" data-faction-tag="both" data-mount-id="72145" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-16992.jpg" alt="Swift Springstrider">
+            <div class="additional-text">Swift Springstrider</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=18902/reins-of-the-swift-stormsaber" target="_blank" class="square vanilla" data-faction-tag="alliance" data-mount-id="18902" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14632.jpg" alt="Swift Stormsaber">
+            <div class="additional-text">Swift Stormsaber</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=18797/horn-of-the-swift-timber-wolf" target="_blank" class="square vanilla" data-faction-tag="horde" data-mount-id="18797" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14575.jpg" alt="Swift Timber Wolf">
+            <div class="additional-text">Swift Timber Wolf</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=34129/swift-warstrider" target="_blank" class="square vanilla" data-faction-tag="horde" data-mount-id="34129" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-20359.jpg" alt="Swift Warstrider">
+            <div class="additional-text">Swift Warstrider</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=18773/swift-white-mechanostrider" target="_blank" class="square vanilla" data-faction-tag="alliance" data-mount-id="18773" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14376.jpg" alt="Swift White Mechanostrider">
+            <div class="additional-text">Swift White Mechanostrider</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=18785/swift-white-ram" target="_blank" class="square vanilla" data-faction-tag="alliance" data-mount-id="18785" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14346.jpg" alt="Swift White Ram">
+            <div class="additional-text">Swift White Ram</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=18778/swift-white-steed" target="_blank" class="square vanilla" data-faction-tag="alliance" data-mount-id="18778" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14338.jpg" alt="Swift White Steed">
+            <div class="additional-text">Swift White Steed</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=18774/swift-yellow-mechanostrider" target="_blank" class="square vanilla" data-faction-tag="alliance" data-mount-id="18774" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14377.jpg" alt="Swift Yellow Mechanostrider">
+            <div class="additional-text">Swift Yellow Mechanostrider</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=31834/reins-of-the-tan-riding-talbuk" target="_blank" class="square tbc" data-faction-tag="both" data-mount-id="31834" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-21077.jpg" alt="Tan Riding Talbuk">
+            <div class="additional-text">Tan Riding Talbuk</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=29230/reins-of-the-tan-war-talbuk" target="_blank" class="square tbc" data-faction-tag="both" data-mount-id="29230" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19376.jpg" alt="Tan War Talbuk">
+            <div class="additional-text">Tan War Talbuk</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=163574/chewed-on-reins-of-the-terrified-pack-mule" target="_blank" class="square bfa" data-faction-tag="both" data-mount-id="163574" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-81694.jpg" alt="Terrified Pack Mule">
+            <div class="additional-text">Terrified Pack Mule</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/spell=34767/summon-thalassian-charger" target="_blank" class="square class-specific" data-faction-tag="horde" data-mount-id="34767" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19085.jpg" alt="Thalassian Charger">
+            <div class="additional-text">Thalassian Charger</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/spell=34769/summon-thalassian-warhorse" target="_blank" class="square class-specific" data-faction-tag="horde" data-mount-id="34769" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19296.jpg" alt="Thalassian Warhorse">
+            <div class="additional-text">Thalassian Charger</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+
+
+        <a href="https://www.wowhead.com/item=1132/horn-of-the-timber-wolf" target="_blank" class="square vanilla" data-faction-tag="horde" data-mount-id="1132" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-247.jpg" alt="Timber Wolf">
+            <div class="additional-text">Timber Wolf</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=8591/whistle-of-the-turquoise-raptor" target="_blank" class="square vanilla" data-faction-tag="horde" data-mount-id="8591" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-6472.jpg" alt="Turquoise Raptor">
+            <div class="additional-text">Turquoise Raptor</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=163584/twilight-avenger" target="_blank" class="square bfa" data-faction-tag="both" data-mount-id="163584" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-87775.jpg" alt="Twilight Avenger">
+            <div class="additional-text">Twilight Avenger</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=64883/scepter-of-azjaqir" target="_blank" class="square profession" data-faction-tag="both" data-mount-id="64883" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-15672.jpg" alt="Ultramarine Qiraji Battle Tank">
+            <div class="additional-text">Ultramarine Qiraji Battle Tank</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=13322/unpainted-mechanostrider" target="_blank" class="square vanilla" data-faction-tag="alliance" data-mount-id="13322" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-9476.jpg" alt="Unpainted Mechanostrider">
+            <div class="additional-text">Unpainted Mechanostrider</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=187595/favor-of-the-valsharah-hippogryph" target="_blank" class="square world-event" data-faction-tag="both" data-mount-id="187595" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-63629.jpg" alt="Val'sharah Hippogryph">
+            <div class="additional-text">Val'sharah Hippogryph</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=46102/whistle-of-the-venomhide-ravasaur" target="_blank" class="square wotlk" data-faction-tag="horde" data-mount-id="46102" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-29102.jpg" alt="Venomhide Ravasaur">
+            <div class="additional-text">Venomhide Ravasaur</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+
+        <a href="https://www.wowhead.com/item=8592/whistle-of-the-violet-raptor" target="_blank" class="square vanilla" data-faction-tag="horde" data-mount-id="8592" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-6473.jpg" alt="Violet Raptor">
+            <div class="additional-text">Violet Raptor</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=121815/voidtalon-of-the-dark-star" target="_blank" class="square wod" data-faction-tag="both" data-mount-id="121815" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-38785.jpg" alt="Voidtalon of the Dark Star">
+            <div class="additional-text">Voidtalon of the Dark Star</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/spell=13819/summon-warhorse" target="_blank" class="square class-specific" data-faction-tag="alliance" data-mount-id="13819" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-8469.jpg" alt="Warhorse">
+            <div class="additional-text">Warhorse</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=46100/white-kodo" target="_blank" class="square vanilla" data-faction-tag="horde" data-mount-id="46100" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-12241.jpg" alt="White Kodo">
+            <div class="additional-text">White Kodo</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=5873/white-ram" target="_blank" class="square vanilla" data-faction-tag="alliance" data-mount-id="5873" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-2786.jpg" alt="White Ram">
+            <div class="additional-text">White Ram</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=31836/reins-of-the-white-riding-talbuk" target="_blank" class="square tbc" data-faction-tag="both" data-mount-id="31836" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-21076.jpg" alt="White Riding Talbuk">
+            <div class="additional-text">White Riding Talbuk</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=29231/reins-of-the-white-war-talbuk" target="_blank" class="square tbc" data-faction-tag="both" data-mount-id="29231" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19377.jpg" alt="White War Talbuk">
+            <div class="additional-text">White War Talbuk</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=207057/gift-of-the-white-war-wolf" target="_blank" class="square df" data-faction-tag="both" data-mount-id="207057" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-14336.jpg" alt="White War Wolf">
+            <div class="additional-text">White War Wolf</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=13086/reins-of-the-winterspring-frostsaber" target="_blank" class="square vanilla" data-faction-tag="alliance" data-mount-id="13086" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-10426.jpg" alt="Name of theWinterspring Frostsaber">
+            <div class="additional-text">Winterspring Frostsaber</div>
+            <div class="obtained-checkbox-container">
+                <input type="checkbox" class="obtained-checkbox">
+                <span class="obtained-text">Obtained</span>
+            </div>
+        </a>
+        <a href="https://www.wowhead.com/item=54860/x-53-touring-rocket" target="_blank" class="square trading-post" data-faction-tag="both" data-mount-id="54860" data-obtained="false">
+            <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-31992.jpg" alt="X-53 Touring Rocket">
+            <div class="additional-text">X-53 Touring Rocket</div>
             <div class="obtained-checkbox-container">
                 <input type="checkbox" class="obtained-checkbox">
                 <span class="obtained-text">Obtained</span>
