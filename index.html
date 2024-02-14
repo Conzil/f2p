@@ -1385,7 +1385,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=83087/ruby-panther" target="_blank" class="square blingtron" data-faction-tag="both" data-mount-id="83088" data-obtained="false">
+        <a href="https://www.wowhead.com/item=83087/ruby-panther" target="_blank" class="square blingtron" data-faction-tag="both" data-mount-id="83087" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-42499.jpg" alt="Ruby Panther">
             <div class="additional-text">Ruby Panther</div>
             <div class="obtained-checkbox-container">
@@ -2135,14 +2135,14 @@ window.addEventListener('resize', updateCheckboxLabels);
     function updateMountProgress() {
     const totalMounts = document.querySelectorAll('.square').length;
     const obtainedMounts = document.querySelectorAll('.square[data-obtained="true"]').length; // Ensure this accurately selects obtained mounts
-    const percentageObtained = totalMounts > 0 ? (obtainedMounts / totalMounts) * 100 : 0;
+    const percentageObtained = totalMounts > 0 ? ((obtainedMounts / totalMounts) * 100) : 0;
     console.log(`Total mounts: ${totalMounts}, Obtained: ${obtainedMounts}`);
 
     const progressBar = document.getElementById('progress-bar');
     progressBar.style.width = `${percentageObtained}%`;
 
     const progressText = document.getElementById('progress-text');
-    progressText.textContent = `${obtainedMounts}/${totalMounts} Mounts Obtained`;
+    progressText.textContent = `${obtainedMounts} / ${totalMounts} Mounts Obtained `;
 }
 
     // Call updateMountProgress initially and every time a mount obtained status changes
