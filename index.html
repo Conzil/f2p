@@ -12,6 +12,7 @@
         margin: 0;
         padding: 0 10px;
         background-image: url('https://i.imgur.com/i5PslN1.png');
+        background-size: cover;
         background-position: center center;
         background-attachment: fixed;
         overflow-x: hidden;
@@ -81,7 +82,6 @@
         color: white;
         font-size: 14px; /* Adjust font size as needed */
     }
-
     .obtained-checkbox-container .obtained-text:hover{
         color: #D6D6D6;
     }
@@ -118,6 +118,12 @@
         align-items: center; /* Centers content vertically */
         padding: 5px;
     }
+    input[type="checkbox"] {
+    vertical-align: middle;
+    position: relative;
+    top: -1px; /* Move only the text down by 10 pixels */
+
+}
     .filter-container { 
         display: flex; 
         justify-content: center; 
@@ -134,8 +140,7 @@
         width: 95%;
         border: 1px solid #555; /* Slightly lighter border for some depth */
         font-size: 14px;
-    }
-
+        }
     .filter-buttons {
         width: 100%; /* Take full width to ensure it breaks onto its own line */
         display: block; /* Ensure it's a block container if flex settings interfere */
@@ -163,6 +168,10 @@
         width: calc(33% - 0px); /* Adjust width for 4 items per row */
         padding-right: 0;
     }
+    .filter-box label span {
+    position: relative;
+    top: 10px; /* Move only the text down by 10 pixels */
+}
     .filter-box label:hover {
         color: #D6D6D6;
     }
@@ -1934,6 +1943,17 @@
         </a>
     </div>
     <script>
+        // Define the confirmRedirect function in the global scope
+        function confirmRedirect(element) {
+            if (element.classList.contains('mark-obtained')) {
+                // If it's the mark as obtained button, return without confirmation
+                return;
+            }
+    
+            if (confirm("Are you sure you want to proceed to wowhead.com?")) {
+                window.open(element.href, '_blank'); // Open the link in a new tab
+            }
+        }
         document.addEventListener('DOMContentLoaded', function() {
         const filterCheckboxes = document.querySelectorAll('.filter');
         const searchBars = document.querySelectorAll('.search-bar');
@@ -1976,6 +1996,8 @@
         square.style.display = isVisible ? 'block' : 'none';
     });
 }
+
+
     // Check All button event listener
     document.getElementById('check-all').addEventListener('click', function() {
         const checkboxes = document.querySelectorAll('.filter-box .filter');
@@ -2125,6 +2147,14 @@ window.addEventListener('resize', updateCheckboxLabels);
     
             filterCheckboxes.forEach(function(checkbox) {
                 checkbox.addEventListener('change', filterSquares);
+            });
+
+                        // Add event listener for confirmation dialog before redirection
+                        squares.forEach(function(square) {
+                square.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    confirmRedirect(square); // Show confirmation dialog before redirecting
+                });
             });
         const obtainedCheckboxes = document.querySelectorAll('.obtained-checkbox');
         obtainedCheckboxes.forEach(function(checkbox) {
