@@ -1963,7 +1963,11 @@
         const searchText = searchBars[0].value.toLowerCase().trim();
         const selectedFaction = getSelectedFaction();
         const selectedObtainedFilter = getSelectedObtainedFilter();
-        
+            // Execute immediately on DOMContentLoaded
+        updateCheckboxLabels();
+
+        // Add a resize event listener to handle window resizing
+        window.addEventListener('resize', updateCheckboxLabels);
         squares.forEach(function(square) {
         const altText = square.querySelector('img').alt.toLowerCase();
         const additionalText = square.querySelector('.additional-text').textContent.toLowerCase();
@@ -2040,26 +2044,29 @@
     'Blingtron': 'Bling'
   };
 
-  // Check if the screen width is below 960px
-  if (window.innerWidth < 1000) {
-    document.querySelectorAll('.filter').forEach(function(checkbox) {
-      const fullText = checkbox.nextSibling.textContent.trim();
-      const shortText = replacements[fullText];
-      if (shortText) {
-        checkbox.nextSibling.textContent = shortText;
-      }
-    });
-  } else {
-    // Revert to original text if screen width is 960px or above
-    Object.keys(replacements).forEach(fullText => {
-      document.querySelectorAll('.filter').forEach(function(checkbox) {
-        const currentText = checkbox.nextSibling.textContent.trim();
-        if (replacements[fullText] === currentText) {
-          checkbox.nextSibling.textContent = fullText;
-        }
-      });
-    });
-  }
+      // Execute replacement logic
+      if (window.innerWidth < 1000) {
+        // Logic for screen width below 1000px
+        document.querySelectorAll('.filter').forEach(function(checkbox) {
+            const label = checkbox.nextSibling.nodeType === 3 ? checkbox.nextSibling : checkbox.nextSibling.nextSibling; // Adjusted to account for possible text node or element node
+            const fullText = label.textContent.trim();
+            const shortText = replacements[fullText];
+            if (shortText) {
+                label.textContent = shortText;
+            }
+        });
+    } else {
+        // Revert logic for screen width 1000px and above
+        Object.keys(replacements).forEach(fullText => {
+            document.querySelectorAll('.filter').forEach(function(checkbox) {
+                const label = checkbox.nextSibling.nodeType === 3 ? checkbox.nextSibling : checkbox.nextSibling.nextSibling; // Adjusted
+                const currentText = label.textContent.trim();
+                if (replacements[fullText] === currentText) {
+                    label.textContent = fullText;
+                }
+            });
+        });
+    }
 }
 
 // Call the function on page load and window resize
