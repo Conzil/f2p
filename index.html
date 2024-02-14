@@ -222,7 +222,7 @@
     }
     .third-filter-box label {
         margin-bottom: 0px; /* Add some bottom margin for spacing */
-        width: calc(30%); /* Adjust width for 3 items per row */
+        width: calc(33%); /* Adjust width for 3 items per row */
         text-align: center; /* Center-align the text */
     }
     .third-filter-box label:hover {
@@ -238,6 +238,30 @@
     .filter-text {
         cursor: pointer; /* Change cursor to pointer when hovering over the text */
     }
+    .progress-container {
+    max-width: 500px;
+    width: 95%; /* Adjust as needed */
+    background-color: #181818; /* Dark box background color */
+    padding: 10px;
+    border-radius: 0px;
+    text-align: center;
+}
+.progress-container2 {
+    background-color: #fff
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #0075FF; /* Lighter background color for the progress bar */
+    border-radius: 0px; /* Same as container for rounded corners */
+}
+
+.progress-text {
+    font-size: 14px;;
+    margin-top: 10px; /* Add space between bar and text */
+    color: #fff; /* Text color */
+}
     </style>
 </head>
 <body>
@@ -285,6 +309,14 @@
             <label><input type="checkbox" class="third-filter" data-faction="all" checked>All</label>
         </div>
     </div>
+    <div class="filter-container">
+    <div class="progress-container">
+        <div class="progress-container2"> 
+        <div class="progress-bar" id="progress-bar" style="width: 0%;"></div>
+    </div>
+        <div class="progress-text" id="progress-text">0 / 0 Mounts Obtained</div>
+    </div>
+</div>
     <div class="row"> 
         <a href="https://www.wowhead.com/spell=48778/acherus-deathcharger" target="_blank" class="square class-specific" data-faction-tag="both" data-mount-id="48778" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25280.jpg" alt="Acherus Deathcharger">
@@ -1129,7 +1161,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=41508/mechano-hog" target="_blank" class="square blingtron" data-faction-tag="horde" data-mount-id="140500" data-obtained="false">
+        <a href="https://www.wowhead.com/item=41508/mechano-hog" target="_blank" class="square blingtron" data-faction-tag="horde" data-mount-id="41508" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25871.jpg" alt="Mechano-Hog">
             <div class="additional-text">Mechano-Hog</div>
             <div class="obtained-checkbox-container">
@@ -1137,7 +1169,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=44413/mekgineers-chopper" target="_blank" class="square blingtron" data-faction-tag="alliance" data-mount-id="140500" data-obtained="false">
+        <a href="https://www.wowhead.com/item=44413/mekgineers-chopper" target="_blank" class="square blingtron" data-faction-tag="alliance" data-mount-id="44413" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-25870.jpg" alt="Mekgineer's Chopper">
             <div class="additional-text">Mekgineer's Chopper</div>
             <div class="obtained-checkbox-container">
@@ -1682,7 +1714,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=28936/swift-pink-hawkstrider" target="_blank" class="square tbc" data-faction-tag="alliance" data-mount-id="28936" data-obtained="false">
+        <a href="https://www.wowhead.com/item=28936/swift-pink-hawkstrider" target="_blank" class="square tbc" data-faction-tag="horde" data-mount-id="28936" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-18697.jpg" alt="Swift Pink Hawkstrider">
             <div class="additional-text">Swift Pink Hawkstrider</div>
             <div class="obtained-checkbox-container">
@@ -1690,7 +1722,7 @@
                 <span class="obtained-text">Obtained</span>
             </div>
         </a>
-        <a href="https://www.wowhead.com/item=29224/swift-purple-hawkstrider" target="_blank" class="square tbc" data-faction-tag="alliance" data-mount-id="29224" data-obtained="false">
+        <a href="https://www.wowhead.com/item=29224/swift-purple-hawkstrider" target="_blank" class="square tbc" data-faction-tag="horde" data-mount-id="29224" data-obtained="false">
             <img src="https://render.worldofwarcraft.com/eu/npcs/zoom/creature-display-19482.jpg" alt="Swift Purple Hawkstrider">
             <div class="additional-text">Swift Purple Hawkstrider</div>
             <div class="obtained-checkbox-container">
@@ -1963,10 +1995,9 @@
         const searchText = searchBars[0].value.toLowerCase().trim();
         const selectedFaction = getSelectedFaction();
         const selectedObtainedFilter = getSelectedObtainedFilter();
-            // Execute immediately on DOMContentLoaded
-        updateCheckboxLabels();
-
-        // Add a resize event listener to handle window resizing
+        updateCheckboxLabels();// Add a resize event listener to handle window resizing
+        loadObtainedStatus();
+        updateMountProgress();
         window.addEventListener('resize', updateCheckboxLabels);
         squares.forEach(function(square) {
         const altText = square.querySelector('img').alt.toLowerCase();
@@ -2001,7 +2032,6 @@
     });
 }
 
-
     // Check All button event listener
     document.getElementById('check-all').addEventListener('click', function() {
         const checkboxes = document.querySelectorAll('.filter-box .filter');
@@ -2023,6 +2053,7 @@
     const selectedFilter = document.querySelector('.third-filter-box input[type="checkbox"]:checked').getAttribute('data-faction');
     return selectedFilter; // will return 'owned', 'not owned', or 'all'
     }
+
     function updateCheckboxLabels() {
   // Define your label replacements here
   const replacements = {
@@ -2100,7 +2131,29 @@ window.addEventListener('resize', updateCheckboxLabels);
         handleThirdFilterCheckboxChange(checkbox);
     });
 });
+    // Function to update progress based on obtained mounts
+    function updateMountProgress() {
+    const totalMounts = document.querySelectorAll('.square').length;
+    const obtainedMounts = document.querySelectorAll('.square[data-obtained="true"]').length; // Ensure this accurately selects obtained mounts
+    const percentageObtained = totalMounts > 0 ? (obtainedMounts / totalMounts) * 100 : 0;
+    console.log(`Total mounts: ${totalMounts}, Obtained: ${obtainedMounts}`);
 
+    const progressBar = document.getElementById('progress-bar');
+    progressBar.style.width = `${percentageObtained}%`;
+
+    const progressText = document.getElementById('progress-text');
+    progressText.textContent = `${obtainedMounts}/${totalMounts} Mounts Obtained`;
+}
+
+    // Call updateMountProgress initially and every time a mount obtained status changes
+    updateMountProgress();
+    document.querySelectorAll('.obtained-checkbox').forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        const square = this.closest('.square'); // Ensure this finds the correct .square parent
+        square.setAttribute('data-obtained', this.checked.toString()); // Correctly sets the attribute based on checkbox state
+        updateMountProgress(); // Call to update the progress display
+    });
+});
     // Function to handle third-filter checkbox change
     function handleThirdFilterCheckboxChange(checkbox) {
         if (!checkbox.checked) {
@@ -2117,10 +2170,26 @@ window.addEventListener('resize', updateCheckboxLabels);
     });
     filterSquares(); // Update the filtering based on the new selection
 }
-        function loadObtainedStatus() {
-        squares.forEach(function(square) {
+
+    function loadObtainedStatus() {
+
+    const squares = document.querySelectorAll('.square');
+    squares.forEach(square => {
+        const mountId = square.dataset.mountId;
+        // Assuming 'true' or 'false' is stored as a string in localStorage
+        const obtained = localStorage.getItem(mountId) === 'true';
+        square.setAttribute('data-obtained', obtained.toString());
+
+        // Also update the checkbox state if needed
+        const checkbox = square.querySelector('.obtained-checkbox');
+        if (checkbox) checkbox.checked = obtained;
+    });
+
+    squares.forEach(function(square) {
         const mountId = square.dataset.mountId;
         const obtained = localStorage.getItem(mountId) === 'true';
+        console.log(`Setting obtained status for mount ID ${mountId}: ${obtained}`);
+        square.setAttribute('data-obtained', obtained.toString()); // Update data-obtained attribute
         const checkbox = square.querySelector('.obtained-checkbox');
         checkbox.checked = obtained;
         if (obtained) {
@@ -2130,23 +2199,8 @@ window.addEventListener('resize', updateCheckboxLabels);
         }
     });
 }
-
-    function loadObtainedStatus() {
-    squares.forEach(function(square) {
-        const mountId = square.dataset.mountId;
-        const obtained = localStorage.getItem(mountId) === 'true';
-        const checkbox = square.querySelector('.obtained-checkbox');
-        checkbox.checked = obtained;
-        if (obtained) {
-            square.setAttribute('data-obtained', 'true');
-        } else {
-            square.removeAttribute('data-obtained');
-        }
-    });
-}
-    
             loadObtainedStatus();
-    
+            updateMountProgress();
             // Event listeners for search input and tag checkboxes
             searchBars.forEach(function(searchBar) {
                 searchBar.addEventListener('input', filterSquares);
