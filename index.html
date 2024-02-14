@@ -11,8 +11,10 @@
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0 10px;
+        background-image: url('https://i.imgur.com/i5PslN1.png');
+        background-position: center center;
+        background-attachment: fixed;
         overflow-x: hidden;
-        background-color: #292929;
     }
     .text {
         text-align: center;
@@ -25,7 +27,7 @@
         margin: 5px -5px 0;
     }
     .square {
-        width: calc(20% - 10px);
+        width: calc(16.6% - 10px);
         box-sizing: border-box;
         margin: 5px;
         position: relative;
@@ -33,25 +35,25 @@
         border: 1px solid #555; /* Slightly lighter border for some depth */
     }
     /* Adjust width for screens less than or equal to 1200px */
-    @media (max-width: 1200px) {
+    @media (max-width: 1600px) {
     .square {
-        width: calc(33% - 10px);
+        width: calc(20% - 10px);
     }
 }
     /* Adjust width for screens less than or equal to 1200px */
-    @media (max-width: 1600px) {
+    @media (max-width: 1280px) {
     .square {
         width: calc(25% - 10px);
     }
 }
     /* Adjust width for screens less than or equal to 1200px */
-    @media (max-width: 1300px) {
+    @media (max-width: 960px) {
     .square {
         width: calc(33% - 10px);
     }
 }
     /* Adjust width for screens less than or equal to 1200px */
-    @media (max-width: 1000px) {
+    @media (max-width: 640px) {
     .square {
         width: calc(50% - 10px);
     }
@@ -67,6 +69,9 @@
         transform: scale(1.1); /* Scale up the image */
     }
 }
+    .square:hover {
+        border: 1px solid #999999; 
+    }
     .obtained-checkbox-container {
         position: absolute;
         top: 10px;
@@ -74,30 +79,11 @@
         /*display: none;*/
         align-items: center;
         color: white;
-        font-size: 16px; /* Adjust font size as needed */
+        font-size: 14px; /* Adjust font size as needed */
     }
-        /* Adjust width for screens less than or equal to 1200px */
-        @media (max-width: 1000px) {
-        .obtained-checkbox-container {
-        font-size: 14px;
-    }
-}
-@media (min-width: 1000px) {
-    .obtained-checkbox-container:hover {
+
+    .obtained-checkbox-container .obtained-text:hover{
         color: #D6D6D6;
-    }
-}
-@media (min-width: 1000px) {
-    .square:hover .additional-text {
-        color: #D6D6D6;
-    }
-}
-    .obtained-checkbox {
-        margin-right: 5px; /* Add some spacing between checkbox and text */
-        cursor: pointer; /* Change cursor to pointer when hovering over the checkbox */
-    }
-    .obtained-text {
-        cursor: pointer; /* Change cursor to pointer when hovering over the text */
     }
     .additional-text {
         position: absolute;
@@ -105,7 +91,7 @@
         left: 50%;
         transform: translateX(-50%);
         color: white;
-        font-size: 16px;
+        font-size: 14px;
         text-align: center;
         margin-left: 0 -25px;
     }
@@ -144,17 +130,12 @@
         border-radius: 0px;
         display: flex;
         flex-wrap: wrap;
-        max-width: 800px;
+        max-width: 500px;
         width: 95%;
         border: 1px solid #555; /* Slightly lighter border for some depth */
         font-size: 14px;
     }
 
-    @media (max-width: 800px) {
-    .filter-box {
-        font-size: 14px;
-    }
-}
     .filter-buttons {
         width: 100%; /* Take full width to ensure it breaks onto its own line */
         display: block; /* Ensure it's a block container if flex settings interfere */
@@ -167,7 +148,7 @@
         color: white; /* Text color */
         border: 1px solid #555; /* Slightly lighter border for some depth */
         padding: 5px 10px; /* Increased padding for a larger button */
-        font-size: 16px; /* Larger font size makes the text inside the button bigger */
+        font-size: 14px; /* Larger font size makes the text inside the button bigger */
         margin: 0 5px; /* Margin around buttons for spacing */
         border-radius: 0px; /* Rounded corners */
         cursor: pointer; /* Change cursor to pointer on hover */
@@ -179,7 +160,8 @@
     }
     .filter-box label {
         margin-bottom: 10px; /* Add some bottom margin for spacing */
-        width: calc(25% - 10px); /* Adjust width for 4 items per row */
+        width: calc(33% - 0px); /* Adjust width for 4 items per row */
+        padding-right: 0;
     }
     .filter-box label:hover {
         color: #D6D6D6;
@@ -200,16 +182,12 @@
         border-radius: 0px;
         display: flex;
         flex-wrap: wrap;
-        max-width: 800px;
+        max-width: 500px;
         width: 95%;
         justify-content: space-between; /* Spread out the buttons evenly */
         border: 1px solid #555; /* Slightly lighter border for some depth */
-    }
-    @media (max-width: 800px) {
-    .faction-filter-box {
         font-size: 14px;
     }
-}
     .faction-filter-box label {
         margin-bottom: 0px; /* Add some bottom margin for spacing */
         width: calc(30%); /* Adjust width for 3 items per row */
@@ -227,16 +205,12 @@
         border-radius: 0px;
         display: flex;
         flex-wrap: wrap;
-        max-width: 800px;
+        max-width: 500px;
         width: 95%;
         justify-content: space-between; /* Spread out the buttons evenly */
         border: 1px solid #555; /* Slightly lighter border for some depth */
-    }
-    @media (max-width: 800px) {
-    .third-filter-box {
         font-size: 14px;
     }
-}
     .third-filter-box label {
         margin-bottom: 0px; /* Add some bottom margin for spacing */
         width: calc(30%); /* Adjust width for 3 items per row */
@@ -279,7 +253,7 @@
             <label><input type="checkbox" class="filter" data-tag="mop" checked>Mists of Pandaria</label>
             <label><input type="checkbox" class="filter" data-tag="cata" checked>Cataclysm</label>
             <label><input type="checkbox" class="filter" data-tag="wotlk" checked>Wrath of the Lich King</label>
-            <label><input type="checkbox" class="filter" data-tag="tbc" checked>The Burning Crusade</label>
+            <label><input type="checkbox" class="filter" data-tag="tbc" checked>Burning Crusade</label>
             <label><input type="checkbox" class="filter" data-tag="vanilla" checked>Vanilla</label>
             <label><input type="checkbox" class="filter" data-tag="profession" checked>Profession</label>
             <label><input type="checkbox" class="filter" data-tag="world-event" checked>World Events</label>
@@ -2023,7 +1997,52 @@
     const selectedFilter = document.querySelector('.third-filter-box input[type="checkbox"]:checked').getAttribute('data-faction');
     return selectedFilter; // will return 'owned', 'not owned', or 'all'
     }
-            
+    function updateCheckboxLabels() {
+  // Define your label replacements here
+  const replacements = {
+    'Achievement': 'Achieve',
+    'Dragonflight': 'DF',
+    'Shadowlands': 'SL',
+    'Battle for Azeroth': 'BFA',
+    'Legion': 'Legion',
+    'Warlords of Draenor': 'WoD',
+    'Mists of Pandaria': 'MoP',
+    'Cataclysm': 'Cata',
+    'Wrath of the Lich King': 'WotLK',
+    'Burning Crusade': 'TBC',
+    'Vanilla': 'Vanilla',
+    'Profession': 'Prof',
+    'World Events': 'Event',
+    'Trading Post': 'Tendies',
+    'Class Specific': 'Class',
+    'Blingtron': 'Bling'
+  };
+
+  // Check if the screen width is below 960px
+  if (window.innerWidth < 800) {
+    document.querySelectorAll('.filter').forEach(function(checkbox) {
+      const fullText = checkbox.nextSibling.textContent.trim();
+      const shortText = replacements[fullText];
+      if (shortText) {
+        checkbox.nextSibling.textContent = shortText;
+      }
+    });
+  } else {
+    // Revert to original text if screen width is 960px or above
+    Object.keys(replacements).forEach(fullText => {
+      document.querySelectorAll('.filter').forEach(function(checkbox) {
+        const currentText = checkbox.nextSibling.textContent.trim();
+        if (replacements[fullText] === currentText) {
+          checkbox.nextSibling.textContent = fullText;
+        }
+      });
+    });
+  }
+}
+
+// Call the function on page load and window resize
+document.addEventListener('DOMContentLoaded', updateCheckboxLabels);
+window.addEventListener('resize', updateCheckboxLabels);      
     
     function getSelectedFaction() {
         const selectedFactionCheckbox = document.querySelector('.faction-filter:checked');
