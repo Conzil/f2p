@@ -104,9 +104,8 @@
         justify-content: center; /* Centers content horizontally */
         align-items: center; /* Centers content vertically */
         max-width: 800px;
-        width: 95%;
+        width: 100%;
         margin: 0 auto;
-        padding: 0 10px;
     }
     .header-buttons {
         background-color: #181818; /* Dark background color for the button */
@@ -276,36 +275,35 @@
         color: #fff; /* Text color */
     }
     footer {
-    background-color: #181818; /* Dark background for the footer */
-    color: white; /* Light text color for contrast */
-    text-align: center; /* Center the text */
-    padding: 5px 0; /* Add some padding */
-    font-size: 14px;
-    margin-top: 10px;
-    margin-left: -11px;
-    margin-right: -11px;
-    border: 1px solid #555; /* Slightly lighter border for some depth */
-}
+        background-color: #181818; /* Dark background for the footer */
+        color: white; /* Light text color for contrast */
+        text-align: center; /* Center the text */
+        padding: 5px 0; /* Add some padding */
+        font-size: 14px;
+        margin-top: 10px;
+        margin-left: -11px;
+        margin-right: -11px;
+        border: 1px solid #555; /* Slightly lighter border for some depth */
+    }
 
-footer a {
-    color: #0075FF; /* Lighter color for links for contrast and visibility */
-    text-decoration: none; /* Remove underline from links */
-    margin-right: 10px;
-    margin-left: 10px;
-}
-footer a:hover {
-    text-decoration: underline; /* Add underline on hover for better user experience */
-}
+    footer a {
+        color: #0075FF; /* Lighter color for links for contrast and visibility */
+        text-decoration: none; /* Remove underline from links */
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+    footer a:hover {
+        text-decoration: underline; /* Add underline on hover for better user experience */
+    }
 
-.page-container {
-    display: flex;
-    flex-direction: column; /* Stacks content and footer vertically */
-    min-height: 100vh; /* Uses a minimum height of the full viewport height */
-}
-.content-wrap {
-    flex: 1; /* Allows this container to expand and fill available space */
-    /* This pushes the footer down */
-}
+    .page-container {
+        display: flex;
+        flex-direction: column; /* Stacks content and footer vertically */
+        min-height: 100vh; /* Uses a minimum height of the full viewport height */
+    }
+    .content-wrap {
+        flex: 1; /* Allows this container to expand and fill available space */
+    }
     </style>
 </head>
 <body>
@@ -2250,6 +2248,7 @@ window.addEventListener('resize', updateCheckboxLabels);
         }
     });
 }
+            updateCheckboxLabels();
             loadObtainedStatus();
             updateMountProgress();
             // Event listeners for search input and tag checkboxes
