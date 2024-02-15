@@ -100,7 +100,6 @@
         display: flex;
     }
     header {
-        background-color: #181818;
         display: flex;
         justify-content: center; /* Centers content horizontally */
         align-items: center; /* Centers content vertically */
@@ -108,26 +107,22 @@
         width: 95%;
         margin: 0 auto;
         padding: 0 10px;
-        border: 1px solid #555; /* Slightly lighter border for some depth */
-        flex-wrap: wrap;
     }
     .header-buttons {
         background-color: #181818; /* Dark background color for the button */
         padding: 10px 0px; /* Increased padding for a larger button */
-        margin: 10px 0px; /* Margin around buttons for spacing */
         border-radius: 0px; /* Rounded corners */
         cursor: pointer; /* Change cursor to pointer on hover */
         display: block; /* Ensure it's a block container if flex settings interfere */
         text-align: center; 
-        width: calc(33% - 0px); /* Adjust width for 4 items per row */
-    }
-    .header-buttons a {
+        border: 1px solid #555; /* Slightly lighter border for some depth */
+        width: 100%; /* Adjust width for 4 items per row */
         text-decoration: none;
         color: white; /* Text color */
         font-size: 14px; /* Larger font size makes the text inside the button bigger */
-        padding: 15px calc(33% - 0px);
+        height: 50px;
     }
-    .header-buttons a:hover {
+    .header-buttons:hover {
         background-color: #0075FF; /* Lighter background color on hover */
     }
     #logo {
@@ -317,9 +312,9 @@ footer a:hover {
     <div class="page-container">
         <div class="content-wrap">
     <header>
-            <div class="header-buttons"><a href="index.html" class="header-button">Mounts</a></div>
-            <div class="header-buttons"><a href="pets.html" class="header-button">Pets</a></div>
-            <div class="header-buttons"><a href="toys.html" class="header-button">Toys</a></div>
+        <button class="header-buttons" onclick="location.href='index.html';">Mounts</button>
+        <button class="header-buttons" onclick="location.href='pets.html';">Pets</button>
+        <button class="header-buttons" onclick="location.href='toys.html';">Toys</button>
     </header>
     <div class="filter-container">
         <div class="filter-box">
