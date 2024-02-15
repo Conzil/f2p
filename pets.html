@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mounts</title>
+    <link rel="icon" href="https://i.imgur.com/JFtudNe.png" type="image/png">
+    <style>
+    body {
+        color: white;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0 10px;
+        background-image: url('https://i.imgur.com/i5PslN1.png');
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        overflow-x: hidden;
+        height: 100%;
+    }
+    header {
+        background-color: #181818;
+        display: flex;
+        justify-content: center; /* Centers content horizontally */
+        align-items: center; /* Centers content vertically */
+        max-width: 800px;
+        width: 95%;
+        margin: 0 auto;
+        padding: 0 10px;
+        border: 1px solid #555; /* Slightly lighter border for some depth */
+        flex-wrap: wrap;
+    }
+    .header-buttons {
+        background-color: #181818; /* Dark background color for the button */
+        padding: 10px 0px; /* Increased padding for a larger button */
+        margin: 10px 0px; /* Margin around buttons for spacing */
+        border-radius: 0px; /* Rounded corners */
+        cursor: pointer; /* Change cursor to pointer on hover */
+        display: block; /* Ensure it's a block container if flex settings interfere */
+        text-align: center; 
+        width: calc(33% - 5px); /* Adjust width for 4 items per row */
+    }
+    .header-buttons a {
+        text-decoration: none;
+        color: white; /* Text color */
+        font-size: 14px; /* Larger font size makes the text inside the button bigger */
+    }
+    .header-buttons:hover {
+        background-color: #0075FF; /* Lighter background color on hover */
+    }
+    footer {
+        background-color: #181818; /* Dark background for the footer */
+        color: white; /* Light text color for contrast */
+        text-align: center; /* Center the text */
+        padding: 5px 0; /* Add some padding */
+        font-size: 14px;
+        margin-top: 10px;
+        margin-left: -11px;
+        margin-right: -11px;
+        border: 1px solid #555; /* Slightly lighter border for some depth */
+    }
+    footer a {
+        color: #0075FF; /* Lighter color for links for contrast and visibility */
+        text-decoration: none; /* Remove underline from links */
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+    footer a:hover {
+        text-decoration: underline; /* Add underline on hover for better user experience */
+    }
+
+    .page-container {
+        display: flex;
+        flex-direction: column; /* Stacks content and footer vertically */
+        min-height: 100vh; /* Uses a minimum height of the full viewport height */
+    }
+    .content-wrap {
+        flex: 1; /* Allows this container to expand and fill available space */
+    }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="content-wrap">
+    <header>
+            <div class="header-buttons"><a href="index.html" class="header-button">Mounts</a></div>
+            <div class="header-buttons"><a href="pets.html" class="header-button">Pets</a></div>
+            <div class="header-buttons"><a href="toys.html" class="header-button">Toys</a></div>
+    </header>
+</div>
+
+</div>
+    <footer>
+        <div class="footer-content">
+            <p>Made by Conzil © 2024</p>
+            <p><a href="https://www.twitch.tv/conzil">Twitch</a>       <a href="https://www.youtube.com/@conzilf2p">Youtube</a></p>
+        </div>
+    </footer>
+</div>
+    <script>
+    </script>
+</body>
+</html>
